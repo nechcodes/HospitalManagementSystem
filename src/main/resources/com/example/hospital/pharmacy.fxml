@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.PharmacyController">
+   <top>
+      <TabPane minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+         <Tab text="Dispense">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <ComboBox fx:id="dispenseDrugClassCombo" layoutX="186.0" layoutY="29.0" prefWidth="150.0" promptText="Select">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+               </ComboBox>
+               <Label layoutX="50.0" layoutY="62.0" text="Drug Name">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="50.0" layoutY="99.0" text="Formulation">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="51.0" layoutY="276.0" text="Unit Price">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="50.0" layoutY="170.0" text="Frequency">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="dispenseDoseTextField" layoutX="186.0" layoutY="138.0" prefHeight="25.0" prefWidth="150.0" />
+               <Label layoutX="50.0" layoutY="205.0" text="Duration">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="dispenseUnitPriceField" layoutX="184.0" layoutY="278.0" prefHeight="25.0" prefWidth="150.0" />
+               <Label layoutX="51.0" layoutY="135.0" text="Dose:">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <Button fx:id="dispenseAddButton" layoutX="185.0" layoutY="313.0" mnemonicParsing="false" onAction="#dispenseAddButtonClicked" prefHeight="30.0" prefWidth="62.0" text="Add">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+               <Button fx:id="dispenseRemoveButton" layoutX="263.0" layoutY="313.0" mnemonicParsing="false" onAction="#dispenseRemoveButtonClicked" text="Remove">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+               <Label layoutX="50.0" layoutY="27.0" text="Class of Drug">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <ComboBox fx:id="dispenseDrugNameCombo" layoutX="186.0" layoutY="65.0" prefWidth="150.0" promptText="Select">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+               </ComboBox>
+               <ComboBox fx:id="dispenseFormulationCombo" layoutX="186.0" layoutY="102.0" prefWidth="150.0" promptText="Select">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+               </ComboBox>
+               <Button fx:id="dispenseCheckoutButton" layoutX="185.0" layoutY="362.0" mnemonicParsing="false" onAction="#dispenseCheckoutButtonClicked" prefHeight="30.0" prefWidth="149.0" text="Checkout">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+               <Pane layoutX="358.0" layoutY="28.0">
+                  <TableView fx:id="dispenseTableView" layoutX="4.0">
+                     <columns>
+                        <TableColumn fx:id="dispenseFormulationColumn" prefWidth="75.0" text="Formulation" />
+                        <TableColumn fx:id="dispenseDrugNameColumn" prefWidth="105.0" text="Drug Name" />
+                        <TableColumn fx:id="dispenseDoseColumn" prefWidth="45.0" text="Dose" />
+                        <TableColumn fx:id="dispenseFrequencyColumn" prefWidth="94.0" text="Frequency" />
+                        <TableColumn fx:id="dispenseDurationColumn" prefWidth="56.0" text="Duration" />
+                        <TableColumn fx:id="dispensePriceColumn" prefWidth="75.0" text="Price (#)" />
+                        <TableColumn fx:id="dispenseTotalBillColumn" prefWidth="75.0" text="Total (#)" />
+                     </columns>
+                  </TableView>
+               </Pane>
+               <ComboBox fx:id="dispenseFrequencyCombo" layoutX="187.0" layoutY="171.0" prefWidth="150.0" promptText="Select">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+               </ComboBox>
+               <ComboBox fx:id="dispenseDurationCombo1" layoutX="186.0" layoutY="206.0" prefHeight="25.0" prefWidth="70.0">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+               </ComboBox>
+               <ComboBox fx:id="dispenseDurationCombo2" layoutX="258.0" layoutY="206.0" prefHeight="25.0" prefWidth="77.0">
+                  <effect>
+                     <InnerShadow />
+                  </effect>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </ComboBox>
+               <Label layoutX="51.0" layoutY="243.0" text="Quantity">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="dispenseQuantityField" layoutX="184.0" layoutY="245.0" prefHeight="25.0" prefWidth="150.0" />
+            </AnchorPane>
+         </Tab>
+         <Tab text="Stock">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="1280.0">
+                  <ComboBox fx:id="stockDrugNameCombo" layoutX="194.0" layoutY="42.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="28.0" layoutY="43.0" text="Name of Drug:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="148.0" text="Dose (mg):">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stockDoseTextField" layoutX="195.0" layoutY="149.0" />
+                  <Label layoutX="29.0" layoutY="182.0" text="Quantity:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stockQuantityTextField" layoutX="195.0" layoutY="183.0" prefHeight="25.0" prefWidth="49.0" />
+                  <Label layoutX="29.0" layoutY="219.0" text="Tablets Per Pack:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stockTabletsPerPackTextField" layoutX="195.0" layoutY="216.0" />
+                  <Label layoutX="29.0" layoutY="283.0" text="Purchase Date:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="317.0" text="Exp Date:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="249.0" text="Unit Price">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stockUnitPriceTextField" layoutX="195.0" layoutY="250.0" />
+                  <Pane layoutX="359.0" layoutY="38.0" prefHeight="405.0" prefWidth="815.0">
+                     <TableView fx:id="stockTableView" layoutX="2.0" layoutY="5.0" prefHeight="400.0" prefWidth="810.0">
+                        <columns>
+                           <TableColumn fx:id="stockDrugNameColumn" prefWidth="94.0" text="Drug Name" />
+                           <TableColumn fx:id="stockFormulationColumn" prefWidth="77.0" text="Formulation" />
+                           <TableColumn fx:id="stockDrugClassColumn" prefWidth="72.0" text="Drug Class" />
+                           <TableColumn fx:id="stockDoseColumn" prefWidth="50.0" text="Dose" />
+                           <TableColumn fx:id="stockQuantityColumn" prefWidth="117.0" text="Quantity">
+                              <columns>
+                                 <TableColumn fx:id="stockQuantityNumberColumn" prefWidth="53.0" text="Number" />
+                                 <TableColumn fx:id="stockQuantityFormColumn" minWidth="0.0" prefWidth="35.0" text="Form" />
+                              </columns></TableColumn>
+                           <TableColumn fx:id="stockTabsPerPackColumn" prefWidth="97.0" text="Tablets Per Pack" />
+                           <TableColumn fx:id="stockUnitPriceColumn" prefWidth="79.0" text="Unit Price (#)" />
+                           <TableColumn fx:id="stockPurchaseDateColumn" prefWidth="128.0" text="Purchase Date" />
+                           <TableColumn fx:id="stockExpDateColumn" minWidth="6.0" prefWidth="124.0" text="Exp Date" />
+                        </columns>
+                     </TableView>
+                  </Pane>
+                  <Button fx:id="stockAddButton" layoutX="196.0" layoutY="357.0" mnemonicParsing="false" onAction="#stockAddButtonClicked" text="Add">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="stockRemoveButton" layoutX="271.0" layoutY="357.0" mnemonicParsing="false" onAction="#stockRemoveButtonClicked" text="Remove">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <DatePicker fx:id="stockExpDatePicker" layoutX="195.0" layoutY="318.0" prefHeight="25.0" prefWidth="150.0" />
+                  <DatePicker fx:id="stockPurchaseDatePicker" layoutX="194.0" layoutY="284.0" prefHeight="25.0" prefWidth="150.0" />
+                  <ComboBox fx:id="stockQuantityCombo" layoutX="245.0" layoutY="183.0" prefHeight="25.0" prefWidth="97.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="29.0" layoutY="76.0" text="Formulation">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="stockFormulationCombo" layoutX="194.0" layoutY="78.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="29.0" layoutY="113.0" text="Class of Drug">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="stockDrugClassCombo" layoutX="195.0" layoutY="114.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </ComboBox>
+               </AnchorPane>
+            </AnchorPane>
+         </Tab>
+      </TabPane>
+   </top>
+</BorderPane>
