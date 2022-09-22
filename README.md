@@ -26,13 +26,16 @@ Feel free fo drop your opinions/advise as you journey with me in this project.
 ## Screenshots
 
 ### Login page
-![](C:\Users\LENOVO\IdeaProjects\Hospital\screenshots\loginPage.png)
+![loginPage](https://user-images.githubusercontent.com/102044949/191849885-51180822-2cd5-42c8-96c8-6dd6d49e07f6.png)
 
 ### Homepage
-![](C:\Users\LENOVO\IdeaProjects\Hospital\screenshots\Homepage.png)
+
+![Homepage](https://user-images.githubusercontent.com/102044949/191849871-885893d0-81c6-4581-a66f-f53ebdd537d7.png)
 
 ### Pharmacy Dispenser
-![](C:\Users\LENOVO\IdeaProjects\Hospital\screenshots\PhamacyDispenser.png)
+![PhamacyDispenser](https://user-images.githubusercontent.com/102044949/191849936-45add72e-43d5-4239-80dc-0811e96f6ae4.png)
 
 ### Pharmacy Stock keeper
-![](C:\Users\LENOVO\IdeaProjects\Hospital\screenshots\PhamarcyStock.png)
+![PhamarcyStock](https://user-images.githubusercontent.com/102044949/191850000-b4c2d664-ab39-487c-9259-3003c551fde5.png)
+
+
