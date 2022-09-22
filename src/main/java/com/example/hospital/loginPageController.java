@@ -25,6 +25,7 @@ public class loginPageController implements Initializable {
     public Label welcomeText = new Label();
 
 
+    @FXML
     private Label hospitalInfo = new Label();
 
     public void setText() {

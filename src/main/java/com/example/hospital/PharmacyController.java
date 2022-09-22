@@ -16,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 public class PharmacyController implements Initializable {
-
     @FXML
     private TableColumn stockQuantityFormColumn;
     @FXML
@@ -121,7 +120,8 @@ public class PharmacyController implements Initializable {
     private ObservableList<Integer> drugDurationList1 = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
     private ObservableList<String> drugDurationList2 = FXCollections.observableArrayList(
             "Day", "Days", "Week", "Weeks", "Months");
-    private ObservableList<Integer> quantityList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    private ObservableList<Integer> quantityList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6,
+            7, 8, 9, 10);
 
     public ObservableList<Dispenser> getDispenser() {
         ObservableList<Dispenser> prescription = FXCollections.observableArrayList();
@@ -232,7 +232,6 @@ public class PharmacyController implements Initializable {
 //
 
     }
-
     public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
         ObservableList<Dispenser> selectedRows, allPrescriptions;
         allPrescriptions = dispenseTableView.getItems();
@@ -241,7 +240,6 @@ public class PharmacyController implements Initializable {
             allPrescriptions.remove(a);
         }
     }
-
     public void dispenseAddButtonClicked(ActionEvent actionEvent) {
         Dispenser d = new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
                 dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
