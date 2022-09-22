@@ -1,4 +1,4 @@
-# HospitalmanagementSystem
+# HospitalManagementSystem
 
 I'm building a hospital management application using javaFX as part of my self training lessons.
 
@@ -18,6 +18,6 @@ Feel free fo drop your opinions/advise as you journey with me in this project.
 
 ### Steps
 
-1. Clone this repository  'git clone https://github.com/nechcodes/HospitalmanagementSystem'
+1. Clone this repository  'git clone https://github.com/nechcodes/HospitalManagementSystem'
 2. Create a JavaFX Project in your IDE
 3. Replace the src folder with the src folder of this repository.
