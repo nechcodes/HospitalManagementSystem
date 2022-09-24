@@ -12,45 +12,48 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HomepageController {
-    public void doctorButtonClicked(ActionEvent actionEvent) {
-    }
-
-    public void patientButtonClicked(ActionEvent actionEvent) {
-    }
-
-        @FXML
-        private Button pharmacyButton;
-
-        @FXML
-        void A(ActionEvent event) {
-
-        }
-
-        @FXML
-        void D(ActionEvent event) {
-
-        }
-
-        @FXML
-        void P(ActionEvent event) {
-
-        }
-
-        @FXML
-        void logout(ActionEvent event) {
-
-        }
-
-        @FXML
-        void pharmacyButtonClicked(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(getClass().getResource("pharmacy.fxml"));
-            Scene scene = new Scene(root, 1200, 600);
-            Stage stage = new Stage();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-            stage.setTitle("Pharmacy");
-            stage.setScene(scene);
-            stage.show();
-        }
+    @FXML
+    private Button pharmacyButton;
+    @FXML
+    private Button doctorButton;
+    @FXML
+    private Button patientButton;
+    @FXML
+    private Button appointmentButton;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    void appointmentButtonClicked(ActionEvent event) throws IOException{
 
     }
+    @FXML
+    void doctorButtonClicked(ActionEvent event) throws IOException{
 
+    }
+    @FXML
+    void patientButtonClicked(ActionEvent event) throws IOException{
+
+    }
+    @FXML
+    void logoutButtonClicked(ActionEvent event) throws IOException {
+        HelloApplication app = new HelloApplication();
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Scene scene = new Scene(root, 600, 500);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle(app.getTitle());
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void pharmacyButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("pharmacy.fxml"));
+        Scene scene = new Scene(root, 1200, 600);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Pharmacy");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+}

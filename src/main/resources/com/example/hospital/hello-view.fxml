@@ -6,48 +6,45 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.loginPageController">
-   <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
-         <top>
-            <Label fx:id="hospitalInfo" prefHeight="101.0" prefWidth="462.0" text="NECH Hospitals" BorderPane.alignment="CENTER">
-               <font>
+    <BorderPane prefHeight="400.0" prefWidth="600.0">
+        <top>
+          <Label fx:id="hospitalInfo" prefHeight="101.0" prefWidth="462.0" text="NECH Hospitals" BorderPane.alignment="CENTER">
+              <font>
                   <Font size="34.0" />
-               </font></Label>
-         </top>
-         <bottom>
-            <Label fx:id="welcomeText" text="Breaking healthy grounds" BorderPane.alignment="CENTER">
-               <font>
+              </font>
+          </Label>
+        </top>
+        <bottom>
+          <Label fx:id="welcomeText" text="Breaking healthy grounds" BorderPane.alignment="CENTER">
+              <font>
                   <Font name="System Bold Italic" size="42.0" />
-               </font>
-            </Label>
-         </bottom>
-         <left>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-         </right>
-         <center>
+              </font>
+          </Label>
+        </bottom>
+        <left>
+          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+        </left>
+        <right>
+          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+        </right>
+        <center>
             <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="username" />
-                  <Label text="password" GridPane.rowIndex="1" />
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" text="login" GridPane.rowIndex="2" />
-                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonClicked" onMouseDragReleased="#signUpButtonClicked" text="sign Up" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
-                  <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               </children>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <Label text="username" />
+                <Label text="password" GridPane.rowIndex="1" />
+                <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" text="login" GridPane.rowIndex="2" />
+                <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonClicked" text="sign Up" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
+                <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </GridPane>
-         </center>
-      </BorderPane>
-   </children>
+        </center>
+    </BorderPane>
 </AnchorPane>

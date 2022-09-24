@@ -16,13 +16,18 @@ import javafx.stage.Stage;
 
 public class loginPageController implements Initializable {
     private String hospitalName;
-    public Button loginButton = new Button();
-    public Button signUpButton = new Button();
-    public TextField usernameTextField = new TextField();
-    public TextField passwordTextField = new TextField();
-    public Alert logInAlert = new Alert(Alert.AlertType.CONFIRMATION);
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button signUpButton;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private TextField passwordTextField;
+    private Alert logInAlert = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert signUpAlert = new Alert(Alert.AlertType.CONFIRMATION);
-    public Label welcomeText = new Label();
+    @FXML
+    private Label welcomeText;
 
 
     @FXML
@@ -35,8 +40,6 @@ public class loginPageController implements Initializable {
     @FXML
     public void loginButtonClicked(ActionEvent event) throws IOException {
         setText();
-        logInAlert.setTitle("Success");
-        logInAlert.setHeaderText("You successfully logged in");
 
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         Scene scene = new Scene(root, 800, 600);

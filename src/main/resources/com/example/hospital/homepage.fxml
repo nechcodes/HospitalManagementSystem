@@ -23,7 +23,7 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Button>
-      <Button fx:id="appointmentButton" layoutX="335.0" layoutY="494.0" mnemonicParsing="false" onAction="#A" text="Appointment">
+      <Button fx:id="appointmentButton" layoutX="335.0" layoutY="494.0" mnemonicParsing="false" onAction="#appointmentButtonClicked" text="Appointment">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font name="Calibri Bold" size="76.0" />
          </font>
       </Label>
-      <Button layoutX="662.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" text="Logout">
+      <Button fx:id="logoutButton" layoutX="662.0" layoutY="22.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout">
          <font>
             <Font name="Book Antiqua Bold" size="25.0" />
          </font>
