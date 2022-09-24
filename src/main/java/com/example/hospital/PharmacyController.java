@@ -91,7 +91,7 @@ public class PharmacyController implements Initializable {
     @FXML
     private TableColumn<Drug, String> stockQuantityColumn;
     @FXML
-    private ComboBox<Integer> stockQuantityCombo;
+    private ComboBox<String> stockQuantityCombo;
     @FXML
     private TextField stockQuantityTextField;
     @FXML
@@ -120,8 +120,8 @@ public class PharmacyController implements Initializable {
     private ObservableList<Integer> drugDurationList1 = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
     private ObservableList<String> drugDurationList2 = FXCollections.observableArrayList(
             "Day", "Days", "Week", "Weeks", "Months");
-    private ObservableList<Integer> quantityList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6,
-            7, 8, 9, 10);
+    private ObservableList<String> quantityList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6",
+            "7", "8", "9", "10");
 
     public ObservableList<Dispenser> getDispenser() {
         ObservableList<Dispenser> prescription = FXCollections.observableArrayList();
@@ -135,16 +135,16 @@ public class PharmacyController implements Initializable {
 
     public ObservableList<Drug> getDrug() {
         ObservableList<Drug> drugs = FXCollections.observableArrayList();
-        drugs.add(new Drug("Paracetamol", "500mg", "Tab", "Analgesic", "9",
-                "20", "09-1-2022",  "09-1-2023"));
-        drugs.add(new Drug("Diclofenac", "100mg", "Tab", "Analgesic", "10",
-                "30", "09-05-22", "09-05-2023"));
-        drugs.add(new Drug("Ibuprofen", "200mg", "Tab", "Analgesic", "10",
-                "20", "09-05-22", "09-05-2022"));
-        drugs.add(new Drug("Celecoxib", "200mg", "Caps", "Analgesic", "10",
-                "100", "05-09-22", "05-09-2023"));
-        drugs.add(new Drug("Cocodamol", "80-0500mg", "Tabs", "Analgesic", "10",
-                "50", "05-09-22", "05-09-2023"));
+        drugs.add(new Drug("Paracetamol", "500mg", "Tab", "Analgesic", "Pack",
+                "1", "9", "20", "09-1-2022", "09-1-2023"));
+        drugs.add(new Drug("Diclofenac", "100mg", "Tab", "Analgesic", "Pack",
+                "1", "10", "30", "09-05-22", "09-05-2023"));
+        drugs.add(new Drug("Ibuprofen", "200mg", "Tab", "Analgesic", "Pack",
+                "1", "10", "20", "09-05-22", "09-05-2022"));
+        drugs.add(new Drug("Celecoxib", "200mg", "Caps", "Analgesic", "Pack",
+                "1", "10", "100", "05-09-22", "05-09-2023"));
+        drugs.add(new Drug("Cocodamol", "80-0500mg", "Tabs", "Analgesic", "Pack",
+                "1", "10", "50", "05-09-22", "05-09-2023"));
         return drugs;
     }
 
@@ -154,6 +154,8 @@ public class PharmacyController implements Initializable {
         stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("drugName"));
         stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("drugClass"));
         stockDoseColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("drugDose"));
+        stockQuantityFormColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("quantityForm"));
+        stockQuantityNumberColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("quantity"));
         stockFormulationColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("formulation"));
         stockTabsPerPackColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("tabletsPerPack"));
         stockUnitPriceColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("unitPrice"));
@@ -164,6 +166,8 @@ public class PharmacyController implements Initializable {
         stockTableView.setEditable(false);
         stockDrugNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         stockDoseColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        stockQuantityFormColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        stockQuantityNumberColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         stockDrugClassColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         stockTabsPerPackColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         stockFormulationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -215,7 +219,7 @@ public class PharmacyController implements Initializable {
         dispenseDurationCombo2.setValue("Days");
         dispenseDurationCombo2.setItems(drugDurationList2);
 
-        stockQuantityCombo.setValue(1);
+        stockQuantityCombo.setValue("1");
         stockQuantityCombo.setItems(quantityList);
 
 //        THE FOLLOWING CODE CAN BE USED TO INSERT NEW COLUMNS (REMEMBER TO FIRST CREATE TableView FIELDS FOR THESE COLUMNS
@@ -251,8 +255,9 @@ public class PharmacyController implements Initializable {
 
     public void stockAddButtonClicked(ActionEvent actionEvent) {
         Drug d = new Drug(stockDrugNameCombo.getValue(), stockDoseTextField.getText(), stockFormulationCombo.getValue(),
-        stockDrugClassCombo.getValue(), stockTabletsPerPackTextField.getText(),
-                stockUnitPriceTextField.getText(), stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+        stockDrugClassCombo.getValue(), stockQuantityCombo.getValue(),stockQuantityTextField.getText(),
+                stockTabletsPerPackTextField.getText(), stockUnitPriceTextField.getText(),
+                stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         stockTableView.getItems().add(d);
     }

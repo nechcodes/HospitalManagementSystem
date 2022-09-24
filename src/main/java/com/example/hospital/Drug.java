@@ -12,15 +12,19 @@ public class Drug {
     private String unitPrice;
     private String purchaseDate;
     private String expDate;
+    private String quantityForm;
+    private String quantity;
 
     public Drug(String drugName, String drugDose,
-                String formulation, String drugClass, String tabletsPerPack,
+                String formulation, String drugClass, String quantityForm, String quantity, String tabletsPerPack,
                 String unitPrice, String purchaseDate, String expDate) {
 
             this.drugName = new SimpleStringProperty(drugName);
             this.drugDose = new SimpleStringProperty(drugDose);
             this.formulation = new SimpleStringProperty(formulation);
             this.drugClass = new SimpleStringProperty(drugClass);
+            this.quantityForm = quantityForm;
+            this.quantity = quantity;
             this.tabletsPerPack = tabletsPerPack;
             this.unitPrice = unitPrice;
             this.purchaseDate = purchaseDate;
@@ -105,5 +109,20 @@ public class Drug {
 
     public void setExpDate(String expDate) {
         this.expDate = expDate;
+    }
+    public String getQuantityForm() {
+        return quantityForm;
+    }
+
+    public void setQuantityForm(String quantityForm) {
+        this.quantityForm = quantityForm;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }
