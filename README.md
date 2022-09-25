@@ -2,11 +2,13 @@
 
 I'm building a hospital management application using javaFX as part of my self training lessons.
 
-This appears to be the most basic of such apps but i wish to bring it to full functionality.
+Only the Pharmacy Department has good functionality for now as work is still in progress (checkout screenshots below).
 
-login is with empty username and password fields for now. Just click 'login' without filling anything and youre in.
+This appears to be the most basic of such apps but I wish to bring it to full functionality.
 
-Feel free fo drop your opinions/advise as you journey with me in this project.
+login is with blank username and password fields for now. Just click 'login' without filling anything and you're in.
+
+Feel free to drop your opinions/advise/issues as you journey with me in this project.
 
 ## Steps to Run this App
 
@@ -20,8 +22,10 @@ Feel free fo drop your opinions/advise as you journey with me in this project.
 
 1. Clone this repository  'git clone https://github.com/nechcodes/HospitalManagementSystem'
 2. Create a JavaFX Project in your IDE
-3. Replace the src folder with the src folder of this repository.
+3. Replace the **src** folder of your new project with the **src** folder of this repository.
 4. Run the 'HelloApplication.main()' method (right click within the class and choose 'run').
+5. In the login page, click 'login' without filling any of the given fields.
+6. Click on the Pharmacy Button in the homepage to appreciate the current version of the project.
 
 ## Screenshots
 
