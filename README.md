@@ -34,7 +34,10 @@ Feel free to drop your opinions/advise/issues as you journey with me in this pro
 
 ### Homepage
 
-![Homepage](https://user-images.githubusercontent.com/102044949/191849871-885893d0-81c6-4581-a66f-f53ebdd537d7.png)
+![homepage](https://user-images.githubusercontent.com/102044949/192641841-eef8b887-ba09-4377-89f3-04e34c32c5ab.png)
+
+### Staffpage
+![staff](https://user-images.githubusercontent.com/102044949/192641856-7802c429-c456-4c4e-9334-06b5211e51e3.png)
 
 ### Pharmacy Dispenser
 ![PhamacyDispenser](https://user-images.githubusercontent.com/102044949/191849936-45add72e-43d5-4239-80dc-0811e96f6ae4.png)
