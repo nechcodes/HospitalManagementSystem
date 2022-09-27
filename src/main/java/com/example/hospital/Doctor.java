@@ -2,9 +2,9 @@ package com.example.hospital;
 
 public class Doctor extends Staff{
     private String specialty;
-    public Doctor(String name, int id, char gender, int age, String phone,
+    public Doctor(String name, String id, String gender, String age, String phone,
                   String qualification, String position, String specialty) {
-        super(name, id, gender, age, phone, qualification, position);
+        super(name, id, gender, age, phone, qualification, position, "Family Medicine");
 
         if (super.getPosition() != "Medical Officer" &&
                 super.getPosition() != "House Officer")

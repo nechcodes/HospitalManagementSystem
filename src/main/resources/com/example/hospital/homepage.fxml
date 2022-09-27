@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #e7f3ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.HomepageController">
    <children>
-      <Button fx:id="doctorButton" layoutX="16.0" layoutY="494.0" mnemonicParsing="false" onAction="#staffButtonClicked" text="Doctor">
+      <Button fx:id="doctorButton" layoutX="34.0" layoutY="494.0" mnemonicParsing="false" onAction="#staffButtonClicked" text="Staff">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -15,7 +15,7 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Button>
-      <Button fx:id="patientButton" layoutX="174.0" layoutY="494.0" mnemonicParsing="false" onAction="#patientButtonClicked" text="Patient">
+      <Button fx:id="patientButton" layoutX="160.0" layoutY="494.0" mnemonicParsing="false" onAction="#patientButtonClicked" text="Patient">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -23,7 +23,7 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Button>
-      <Button fx:id="appointmentButton" layoutX="335.0" layoutY="494.0" mnemonicParsing="false" onAction="#appointmentButtonClicked" text="Appointment">
+      <Button fx:id="appointmentButton" layoutX="321.0" layoutY="494.0" mnemonicParsing="false" onAction="#appointmentButtonClicked" text="Appointment">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
@@ -41,7 +41,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="pharmacyButton" layoutX="590.0" layoutY="493.0" mnemonicParsing="false" onAction="#pharmacyButtonClicked" text="Pharmacy">
+      <Button fx:id="pharmacyButton" layoutX="576.0" layoutY="493.0" mnemonicParsing="false" onAction="#pharmacyButtonClicked" text="Pharmacy">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>

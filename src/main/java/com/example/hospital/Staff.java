@@ -2,15 +2,16 @@ package com.example.hospital;
 
 public class Staff {
     private String name;
-    private int id;
-    private char gender;
-    private int age;
+    private String id;
+    private String gender;
+    private String age;
 
     private String phone;
     private String category;
     private String position;
+    private String department;
 
-    public Staff(String name, int id, char gender, int age, String phone, String category, String position) {
+    public Staff(String name, String id, String gender, String age, String phone, String category, String position, String department) {
         this.name = name;
         this.id = id;
         this.gender = gender;
@@ -18,21 +19,22 @@ public class Staff {
         this.phone = phone;
         this.category = category;
         this.position = position;
+        this.department = department;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -45,5 +47,8 @@ public class Staff {
 
     public String getPosition() {
         return position;
+    }
+    public String getDepartment() {
+        return department;
     }
 }

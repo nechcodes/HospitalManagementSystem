@@ -104,7 +104,7 @@ public class PharmacyController implements Initializable {
     private TableColumn<Drug, String> stockUnitPriceColumn;
     @FXML
     private TextField stockUnitPriceTextField;
-    ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
+    private ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
             "Paracetamol", "Diclofenac", "Ibuprofen", "Celecoxib", "Cocodamol");
 
     private ObservableList<String> drugFormulationList = FXCollections.observableArrayList(
@@ -118,6 +118,7 @@ public class PharmacyController implements Initializable {
             "IV Fluids", "Antimalaria", "Antibiotics", "Hematinics", "Antiulcer");
 
     private ObservableList<Integer> drugDurationList1 = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
+
     private ObservableList<String> drugDurationList2 = FXCollections.observableArrayList(
             "Day", "Days", "Week", "Weeks", "Months");
     private ObservableList<String> quantityList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6",
@@ -234,7 +235,6 @@ public class PharmacyController implements Initializable {
 //        drugTableView.getItems();
 //
 //
-
     }
     public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
         ObservableList<Dispenser> selectedRows, allPrescriptions;
@@ -261,7 +261,6 @@ public class PharmacyController implements Initializable {
                 stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         stockTableView.getItems().add(d);
     }
-
     public void stockRemoveButtonClicked(ActionEvent actionEvent) {
         ObservableList<Drug> selectedRows,allDrugs;
         allDrugs = stockTableView.getItems();
@@ -271,7 +270,6 @@ public class PharmacyController implements Initializable {
             allDrugs.remove(a);
         }
     }
-
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
 
     }
