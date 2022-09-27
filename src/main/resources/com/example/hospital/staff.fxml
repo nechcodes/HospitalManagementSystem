@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.StaffController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1513.0">
+         <top>
+            <Pane prefHeight="600.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="262.0" layoutY="19.0" text="Name" textFill="#262626">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="name" layoutX="322.0" layoutY="20.0" prefWidth="150.0" />
+                  <Label layoutX="292.0" layoutY="63.0" text="ID">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="id" layoutX="322.0" layoutY="63.0" prefWidth="150.0" />
+                  <Label layoutX="251.0" layoutY="104.0" text="Gender">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add" layoutX="322.0" layoutY="106.0" prefWidth="150.0" />
+                  <Label layoutX="184.0" layoutY="191.0" text="Phone Number">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ph" layoutX="322.0" layoutY="149.0" prefWidth="150.0" />
+                  <ComboBox layoutX="322.0" layoutY="235.0" prefWidth="150.0" />
+                  <Label layoutX="237.0" layoutY="320.0" text="Specialty">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sp" layoutX="322.0" layoutY="192.0" prefWidth="150.0" />
+                  <TableView fx:id="staffTable" layoutX="499.0" layoutY="17.0">
+                    <columns>
+                      <TableColumn fx:id="dname" onEditCommit="#changn" prefWidth="96.0" text="Name" />
+                      <TableColumn fx:id="iname" onEditCommit="#changi" prefWidth="58.0" text="ID" />
+                        <TableColumn fx:id="aname" onEditCommit="#changa" prefWidth="52.0" text="Gender" />
+                        <TableColumn fx:id="pname" onEditCommit="#changp" prefWidth="79.0" text="DOB" />
+                        <TableColumn fx:id="sname" onEditCommit="#changs" prefWidth="122.0" text="Category" />
+                        <TableColumn fx:id="sname1" onEditCommit="#changs" prefWidth="108.0" text="Position" />
+                        <TableColumn fx:id="sname2" onEditCommit="#changs" prefWidth="100.0" text="Specialty" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="204.0" layoutY="148.0" text="Date of Birth">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="191.0" layoutY="234.0" text="Staff Category">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="243.0" layoutY="277.0" text="Position">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sp111" layoutX="323.0" layoutY="321.0" prefWidth="150.0" />
+                  <ComboBox layoutX="322.0" layoutY="278.0" prefWidth="150.0" />
+                  <Button layoutX="322.0" layoutY="360.0" mnemonicParsing="false" onAction="#btn" prefWidth="62.0" text="Add">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="393.0" layoutY="360.0" mnemonicParsing="false" onAction="#delete" text="Delete">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="408.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="150.0" text="Home">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -27,7 +27,14 @@ public class HomepageController {
 
     }
     @FXML
-    void doctorButtonClicked(ActionEvent event) throws IOException{
+    void staffButtonClicked(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("staff.fxml"));
+        Scene scene = new Scene(root, 1200, 600);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Staff");
+        stage.setScene(scene);
+        stage.show();
 
     }
     @FXML

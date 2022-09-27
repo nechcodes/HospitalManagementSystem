@@ -15,7 +15,7 @@ public class Dispenser {
         this.dDuration = dDuration;
         this.dFrequency = dFrequency;
         this.dQuantity = dQuantity;
-        dUnitPrice = unitPrice;
+        this.dUnitPrice = unitPrice;
     }
 
     public String getdFormulation() {

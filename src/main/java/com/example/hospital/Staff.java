@@ -7,16 +7,16 @@ public class Staff {
     private int age;
 
     private String phone;
-    private String qualification;
+    private String category;
     private String position;
 
-    public Staff(String name, int id, char gender, int age, String phone, String qualification, String position) {
+    public Staff(String name, int id, char gender, int age, String phone, String category, String position) {
         this.name = name;
         this.id = id;
         this.gender = gender;
         this.age = age;
         this.phone = phone;
-        this.qualification = qualification;
+        this.category = category;
         this.position = position;
     }
 
@@ -39,8 +39,8 @@ public class Staff {
     public String getPhone() {
         return phone;
     }
-    public String getQualification() {
-        return qualification;
+    public String getCategory() {
+        return category;
     }
 
     public String getPosition() {

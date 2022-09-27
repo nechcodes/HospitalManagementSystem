@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #e7f3ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.HomepageController">
    <children>
-      <Button fx:id="doctorButton" layoutX="16.0" layoutY="494.0" mnemonicParsing="false" onAction="#doctorButtonClicked" text="Doctor">
+      <Button fx:id="doctorButton" layoutX="16.0" layoutY="494.0" mnemonicParsing="false" onAction="#staffButtonClicked" text="Doctor">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
