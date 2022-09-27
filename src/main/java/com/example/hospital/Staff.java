@@ -5,16 +5,19 @@ public class Staff {
     private int id;
     private char gender;
     private int age;
-    private String qualification;
-    private String specialty;
 
-    public Staff(String name, int id, char gender, int age, String qualification, String specialty) {
+    private String phone;
+    private String qualification;
+    private String position;
+
+    public Staff(String name, int id, char gender, int age, String phone, String qualification, String position) {
         this.name = name;
         this.id = id;
         this.gender = gender;
         this.age = age;
+        this.phone = phone;
         this.qualification = qualification;
-        this.specialty = specialty;
+        this.position = position;
     }
 
     public String getName() {
@@ -33,11 +36,14 @@ public class Staff {
         return age;
     }
 
+    public String getPhone() {
+        return phone;
+    }
     public String getQualification() {
         return qualification;
     }
 
-    public String getSpecialty() {
-        return specialty;
+    public String getPosition() {
+        return position;
     }
 }

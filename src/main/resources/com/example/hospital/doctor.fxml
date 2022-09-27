@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.hospital.DoctorController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.DoctorController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0">
+         <left>
+            <VBox prefHeight="941.0" prefWidth="196.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btn" prefHeight="74.0" prefWidth="155.0" text="Add ">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="40.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#delete" prefHeight="74.0" prefWidth="173.0" text="Delete">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#logout" prefHeight="63.0" prefWidth="196.0" text="Logout">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#home" prefHeight="63.0" prefWidth="196.0" text="Home">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="30.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <BorderPane prefHeight="108.0" prefWidth="1920.0" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="244.0" layoutY="14.0" prefHeight="57.0" prefWidth="106.0" text="Name " textFill="#262626">
+                     <font>
+                        <Font name="Book Antiqua" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="name" layoutX="376.0" layoutY="26.0" prefHeight="33.0" prefWidth="257.0" />
+                  <Label layoutX="302.0" layoutY="84.0" prefHeight="57.0" prefWidth="48.0" text="ID">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="id" layoutX="376.0" layoutY="96.0" prefHeight="33.0" prefWidth="259.0" />
+                  <Label layoutX="208.0" layoutY="162.0" prefHeight="57.0" prefWidth="142.0" text="Address">
+                     <font>
+                        <Font name="Book Antiqua" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add" layoutX="376.0" layoutY="168.0" prefHeight="33.0" prefWidth="265.0" />
+                  <Label layoutX="100.0" layoutY="236.0" prefHeight="57.0" prefWidth="257.0" text="Phone Number">
+                     <font>
+                        <Font name="Book Antiqua" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ph" layoutX="376.0" layoutY="236.0" prefHeight="33.0" prefWidth="265.0" />
+                  <Label layoutX="205.0" layoutY="304.0" prefHeight="57.0" prefWidth="160.0" text="Specialty">
+                     <font>
+                        <Font name="Book Antiqua" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="sp" layoutX="376.0" layoutY="316.0" prefHeight="33.0" prefWidth="267.0" />
+                  <TableView fx:id="tabel" layoutX="653.0" layoutY="-1.0" prefHeight="974.0" prefWidth="516.0">
+                    <columns>
+                      <TableColumn fx:id="dname" onEditCommit="#changn" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="iname" onEditCommit="#changi" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="aname" onEditCommit="#changa" prefWidth="81.0" text="Address" />
+                        <TableColumn fx:id="pname" onEditCommit="#changp" prefWidth="131.0" text="Phone number" />
+                        <TableColumn fx:id="sname" onEditCommit="#changs" prefWidth="178.0" text="Specialty in Medicine" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
