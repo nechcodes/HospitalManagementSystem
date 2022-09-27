@@ -190,9 +190,9 @@ public class StaffController implements Initializable {
 
     private ObservableList<Staff> getStaff() {
             ObservableList<Staff> staff = FXCollections.observableArrayList();
-            staff.add(new Staff("Confidence", "1234", "Male", "26", "08107170179",
+            staff.add(new Staff("Confidence", "1234", "Male", "26", "+2340000000000",
                     "Doctor", "Medical Officer", "Internal Medicine"));
-            staff.add(new Staff("Gift", "1235", "Female", "21", "00000000000",
+            staff.add(new Staff("Gift", "1235", "Female", "21", "+2340000000001",
                     "Student", "Intern", "Laboratory"));
              return staff;
         }
