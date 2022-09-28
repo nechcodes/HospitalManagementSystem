@@ -39,7 +39,13 @@ public class HomepageController {
     }
     @FXML
     void patientButtonClicked(ActionEvent event) throws IOException{
-
+        Parent root = FXMLLoader.load(getClass().getResource("patient.fxml"));
+        Scene scene = new Scene(root, 1200, 600);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Patient");
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML
     void logoutButtonClicked(ActionEvent event) throws IOException {
