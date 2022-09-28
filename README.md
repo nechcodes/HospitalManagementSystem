@@ -25,7 +25,6 @@ Feel free to drop your opinions/advise/issues as you journey with me in this pro
 3. Replace the **src** folder of your new project with the **src** folder of this repository.
 4. Run the 'HelloApplication.main()' method (right click within the class and choose 'run').
 5. In the login page, click 'login' without filling any of the given fields.
-6. Click on the Pharmacy Button in the homepage to appreciate the current version of the project.
 
 ## Screenshots
 
