@@ -1,22 +1,28 @@
 package com.example.hospital;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PatientController {
+public class PatientController implements Initializable {
 
+    @FXML
+    private TableColumn<Patient, String> ageColumn;
     @FXML
     private TextField addressTextField;
 
@@ -75,6 +81,7 @@ public class PatientController {
     private TableView<Patient> patientTableView;
     @FXML
     private TextField ageTextField;
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
 
     @FXML
@@ -83,61 +90,61 @@ public class PatientController {
                 hospitalNumberTextField.getText(), ageTextField.getText(), addressTextField.getText(), phoneTextField.getText(),
                 genderCombo.getValue(), occupationTextField.getText(), entryPointCombo.getValue(),
                 referralCombo.getValue());
-
+        patientTableView.getItems().add(p);
     }
 
     @FXML
     void deleteButtonClicked(ActionEvent event) {
-        ObservableList<Patient> allPatients, selectedRow;
-        allPatients = patientTableView.getItems();
-        selectedRow = patientTableView.getSelectionModel().getSelectedItems();
+            ObservableList<Patient> allPatients, selectedRow;
+            allPatients = patientTableView.getItems();
+            selectedRow = patientTableView.getSelectionModel().getSelectedItems();
 
-        for (Patient p : selectedRow)
-            allPatients.remove(p);
+            for (Patient p : selectedRow)
+                allPatients.remove(p);
     }
 
     @FXML
-    void editAddressColumn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void editEntryPointColumn(ActionEvent event) {
+    void editAddressColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editFirstNameColumn(ActionEvent event) {
+    void editEntryPointColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editHospitalNumberColumn(ActionEvent event) {
+    void editFirstNameColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editLastNameColumn(ActionEvent event) {
+    void editHospitalNumberColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editOccupationColumn(ActionEvent event) {
+    void editLastNameColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editPatientGenderColumn(ActionEvent event) {
+    void editOccupationColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editPatientPhoneColumn(ActionEvent event) {
+    void editPatientGenderColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
     @FXML
-    void editReferralColumn(ActionEvent event) {
+    void editPatientPhoneColumn(TableColumn.CellEditEvent<Patient, String> event) {
+
+    }
+
+    @FXML
+    void editReferralColumn(TableColumn.CellEditEvent<Patient, String> event) {
 
     }
 
@@ -161,5 +168,42 @@ public class PatientController {
         stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private ObservableList<Patient> getPatient(){
+        ObservableList<Patient> p = FXCollections.observableArrayList();
+        p.add(new Patient("Nwenwe", "Darlington", "001", "18",
+                "Port Harcourt", "0800000001", "Male", "Student",
+                "GPD", "NO"));
+        return p;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
+        hospitalNumberColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("hospitalNumber"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("age"));
+        patientGenderColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("gender"));
+        patientPhoneColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("phone"));
+        occupationColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("occupation"));
+        patientAddressColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("address"));
+        entryPointColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("entryPoint"));
+        referralColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("referral"));
+
+        patientTableView.setItems(getPatient());
+        patientTableView.setEditable(true);
+
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        hospitalNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        patientGenderColumn.setCellFactory((ComboBoxTableCell.forTableColumn()));
+        patientAddressColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        patientPhoneColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        occupationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        entryPointColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
+        referralColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
+
     }
 }
