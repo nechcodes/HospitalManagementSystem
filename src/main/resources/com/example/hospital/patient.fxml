@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.hospital.PatientController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.PatientController">
+    <children>
+        <Pane layoutY="146.0" prefHeight="788.0" prefWidth="200.0" />
+        <Label layoutX="210.0" layoutY="155.0" prefHeight="48.0" prefWidth="95.0" text="Name">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="203.0" prefHeight="48.0" prefWidth="67.0" text="ID">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="251.0" prefHeight="48.0" prefWidth="115.0" text="Address">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="299.0" prefHeight="60.0" prefWidth="220.0" text="Phone Number">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="359.0" prefHeight="47.0" prefWidth="122.0" text="Gender">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="406.0" prefHeight="48.0" prefWidth="193.0" text="Symptoms">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="450.0" prefHeight="68.0" prefWidth="200.0" text="Diagonsis">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <Label layoutX="210.0" layoutY="506.0" prefHeight="68.0" prefWidth="200.0" text="Payment">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <TextField fx:id="name" layoutX="444.0" layoutY="173.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="id" layoutX="444.0" layoutY="221.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="add" layoutX="444.0" layoutY="269.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="ph" layoutX="444.0" layoutY="318.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="ge" layoutX="444.0" layoutY="368.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="sy" layoutX="444.0" layoutY="418.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="d" layoutX="444.0" layoutY="472.0" prefHeight="30.0" prefWidth="150.0" />
+        <TextField fx:id="p" layoutX="444.0" layoutY="525.0" prefHeight="30.0" prefWidth="150.0" />
+        <TableView fx:id="tabel" layoutX="724.0" layoutY="155.0" prefHeight="924.0" prefWidth="643.0">
+            <columns>
+                <TableColumn fx:id="dname" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="iname" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="aname" prefWidth="75.0" text="Address" />
+                <TableColumn fx:id="pname" prefWidth="108.0" text="Phone Number" />
+                <TableColumn fx:id="gender" prefWidth="76.0" text="Gender" />
+                <TableColumn fx:id="sname" prefWidth="74.0" text="Symptoms" />
+                <TableColumn fx:id="dia" prefWidth="85.0" text="Diagnosis" />
+                <TableColumn fx:id="pay" prefWidth="74.0" text="Payment" />
+            </columns>
+        </TableView>
+          <Button layoutX="444.0" layoutY="568.0" mnemonicParsing="false" onAction="#btn" prefHeight="35.0" prefWidth="87.0" text="ADD">
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+          <Button layoutX="583.0" layoutY="567.0" mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="87.0" text="Delete">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+          <Button layoutX="583.0" layoutY="636.0" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="87.0" text="Logout">
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+          <Button layoutX="444.0" layoutY="636.0" mnemonicParsing="false" onAction="#home" prefHeight="35.0" prefWidth="87.0" text="Home">
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+    </children>
 </AnchorPane>

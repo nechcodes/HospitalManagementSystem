@@ -27,17 +27,14 @@ public class StaffController implements Initializable {
 
     @FXML
     private Button addButton;
-
     @FXML
     private Button deleteButton;
-
     @FXML
     private Button homeButton;
     @FXML
     private TableView<Staff> staffTableView;
     @FXML
     private TableColumn<Staff, String> staffGenderColumn;
-
     @FXML
     private TableColumn<Staff, String> staffCategoryColumn;
     @FXML
