@@ -1,7 +1,5 @@
 package com.example.hospital;
 
-import java.util.Date;
-
 public class Patient {
     private String firstName;
     private String lastName;
@@ -10,6 +8,36 @@ public class Patient {
     private String age;
     private String phone;
     private String occupation;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setHospitalNumber(String hospitalNumber) {
+        this.hospitalNumber = hospitalNumber;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    public void setAge(String age) {
+        this.age = age;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public void setEntryPoint(String entryPoint) {
+        this.entryPoint = entryPoint;
+    }
+    public void setReferral(String referral) {
+        this.referral = referral;
+    }
     private String address;
     private String entryPoint;
     private String referral;
@@ -28,43 +56,33 @@ public class Patient {
         this.entryPoint = entryPoint;
         this.referral = referral;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getHospitalNumber() {
         return hospitalNumber;
     }
-
     public String getGender() {
         return gender;
     }
-
     public String getAge() {
         return age;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getPhone() {
         return phone;
     }
-
     public String getOccupation() {
         return occupation;
     }
-
     public String getAddress() {
         return address;
     }
-
     public String getEntryPoint() {
         return entryPoint;
     }
-
     public String getReferral() {
         return referral;
     }

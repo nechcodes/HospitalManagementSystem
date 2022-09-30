@@ -81,7 +81,10 @@ public class PatientController implements Initializable {
     private TableView<Patient> patientTableView;
     @FXML
     private TextField ageTextField;
-    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private final ObservableList<String> genderList = FXCollections.observableArrayList("Male", "Female");
+    private final ObservableList<String> entryPointList = FXCollections.observableArrayList("A/E", "CHER", "CHOP",
+            "Labour Ward", "GOPD", "MOPC", "SOPC", "Gynae Clinic", "Obs Clinic");
+    private final ObservableList<String> referralList = FXCollections.observableArrayList("Yes", "No");
 
 
     @FXML
@@ -105,47 +108,62 @@ public class PatientController implements Initializable {
 
     @FXML
     void editAddressColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setAddress(event.getNewValue());
     }
 
     @FXML
     void editEntryPointColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setEntryPoint(event.getNewValue());
     }
 
     @FXML
     void editFirstNameColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setFirstName(event.getNewValue());
     }
 
     @FXML
     void editHospitalNumberColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setHospitalNumber(event.getNewValue());
     }
 
     @FXML
     void editLastNameColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setLastName(event.getNewValue());
     }
 
     @FXML
     void editOccupationColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setOccupation(event.getNewValue());
     }
 
     @FXML
     void editPatientGenderColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setGender(event.getNewValue());
     }
 
     @FXML
     void editPatientPhoneColumn(TableColumn.CellEditEvent<Patient, String> event) {
-
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setPhone(event.getNewValue());
     }
 
     @FXML
     void editReferralColumn(TableColumn.CellEditEvent<Patient, String> event) {
+        Patient p=(Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setReferral(event.getNewValue());
+    }
 
+    @FXML
+    void editAgeColumn(TableColumn.CellEditEvent<Patient, String> event){
+        Patient p = (Patient) patientTableView.getSelectionModel().getSelectedItems();
+        p.setAge(event.getNewValue());
     }
 
     @FXML
@@ -174,7 +192,9 @@ public class PatientController implements Initializable {
         ObservableList<Patient> p = FXCollections.observableArrayList();
         p.add(new Patient("Nwenwe", "Darlington", "001", "18",
                 "Port Harcourt", "0800000001", "Male", "Student",
-                "GPD", "NO"));
+                "GOPD", "No"));
+        p.add(new Patient("Ada", "George", "002", "32", "Abia",
+                "09000000001", "Female", "Baker", "MOPC", "Yes"));
         return p;
     }
 
@@ -205,5 +225,13 @@ public class PatientController implements Initializable {
         entryPointColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         referralColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
 
+        genderCombo.setValue("select");
+        genderCombo.setItems(genderList);
+
+        entryPointCombo.setValue("select");
+        entryPointCombo.setItems(entryPointList);
+
+        referralCombo.setValue("select");
+        referralCombo.setItems(referralList);
     }
 }

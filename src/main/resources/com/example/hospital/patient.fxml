@@ -5,119 +5,111 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.PatientController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.PatientController">
     <Label layoutX="99.0" layoutY="65.0" text="Last Name">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="42.0" layoutY="99.0" text="Hospital Number">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="119.0" layoutY="168.0" text="Address">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="60.0" layoutY="202.0" text="Phone Number">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="125.0" layoutY="238.0" text="Gender">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="88.0" layoutY="272.0" text="Occupation">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="92.0" layoutY="308.0" text="Entry point">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="107.0" layoutY="343.0" text="Referral ?">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="firstNameTextField" layoutX="198.0" layoutY="32.0" prefHeight="25.0" prefWidth="150.0"/>
-    <TextField fx:id="lastNameTextField" layoutX="198.0" layoutY="66.0" prefHeight="25.0" prefWidth="150.0"/>
-    <TextField fx:id="hospitalNumberTextField" layoutX="198.0" layoutY="100.0" prefHeight="25.0" prefWidth="150.0"/>
-    <TextField fx:id="ageTextField" layoutX="197.0" layoutY="133.0" prefHeight="25.0" prefWidth="150.0"/>
-    <TextField fx:id="addressTextField" layoutX="198.0" layoutY="169.0" prefHeight="25.0" prefWidth="150.0"/>
-    <TextField fx:id="phoneTextField" layoutX="198.0" layoutY="204.0" prefHeight="25.0" prefWidth="150.0"/>
-    <ComboBox fx:id="genderCombo" layoutX="198.0" layoutY="239.0" prefWidth="150.0"/>
-    <TextField fx:id="occupationTextField" layoutX="198.0" layoutY="274.0" prefHeight="25.0" prefWidth="150.0"/>
-    <ComboBox fx:id="entryPointCombo" layoutX="198.0" layoutY="309.0" prefWidth="150.0"/>
-    <ComboBox fx:id="referralCombo" layoutX="197.0" layoutY="344.0" prefWidth="150.0"/>
+    <TextField fx:id="firstNameTextField" layoutX="198.0" layoutY="32.0" prefHeight="25.0" prefWidth="150.0" />
+    <TextField fx:id="lastNameTextField" layoutX="198.0" layoutY="66.0" prefHeight="25.0" prefWidth="150.0" />
+    <TextField fx:id="hospitalNumberTextField" layoutX="198.0" layoutY="100.0" prefHeight="25.0" prefWidth="150.0" />
+    <TextField fx:id="ageTextField" layoutX="197.0" layoutY="133.0" prefHeight="25.0" prefWidth="150.0" />
+    <TextField fx:id="addressTextField" layoutX="198.0" layoutY="169.0" prefHeight="25.0" prefWidth="150.0" />
+    <TextField fx:id="phoneTextField" layoutX="198.0" layoutY="204.0" prefHeight="25.0" prefWidth="150.0" />
+    <ComboBox fx:id="genderCombo" layoutX="198.0" layoutY="239.0" prefWidth="150.0" />
+    <TextField fx:id="occupationTextField" layoutX="198.0" layoutY="274.0" prefHeight="25.0" prefWidth="150.0" />
+    <ComboBox fx:id="entryPointCombo" layoutX="198.0" layoutY="309.0" prefWidth="150.0" />
+    <ComboBox fx:id="referralCombo" layoutX="197.0" layoutY="344.0" prefWidth="150.0" />
     <Button layoutX="198.0" layoutY="381.0" mnemonicParsing="false" onAction="#addButtonClicked" text="Add">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
     <Button layoutX="269.0" layoutY="380.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete">
         <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
         </font>
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
     <Button layoutX="198.0" layoutY="430.0" mnemonicParsing="false" onAction="#homeButtonClicked" text="Home">
         <font>
-            <Font name="System Bold" size="16.5"/>
+            <Font name="System Bold" size="16.5" />
         </font>
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
     <Button layoutX="270.0" layoutY="430.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout">
         <font>
-            <Font name="System Bold" size="16.5"/>
+            <Font name="System Bold" size="16.5" />
         </font>
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
     <Label layoutX="96.0" layoutY="31.0" text="First Name">
         <font>
-          <Font name="System Bold" size="18.0"/>
+          <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <Label layoutX="139.0" layoutY="132.0" text="Age">
         <font>
-          <Font name="System Bold" size="18.0"/>
+          <Font name="System Bold" size="18.0" />
         </font>
     </Label>
     <TableView fx:id="patientTableView" layoutX="392.0" layoutY="32.0">
         <columns>
-            <TableColumn fx:id="firstNameColumn" onEditCommit="#editFirstNameColumn" prefWidth="75.0"
-                         text="First Name"/>
-        <TableColumn fx:id="lastNameColumn" onEditCommit="#editLastNameColumn" prefWidth="75.0" text="Last Name"/>
-            <TableColumn fx:id="hospitalNumberColumn" onEditCommit="#editHospitalNumberColumn" prefWidth="75.0"
-                         text="Hospital No."/>
-        <TableColumn fx:id="ageColumn" onEditCommit="#editHospitalNumberColumn" prefWidth="45.0" text="Age"/>
-            <TableColumn fx:id="patientAddressColumn" onEditCommit="#editAddressColumn" prefWidth="125.0"
-                         text="Address"/>
-            <TableColumn fx:id="patientPhoneColumn" onEditCommit="#editPatientPhoneColumn" prefWidth="94.0"
-                         text="Phone Number"/>
-            <TableColumn fx:id="patientGenderColumn" onEditCommit="#editPatientGenderColumn" prefWidth="51.0"
-                         text="Gender"/>
-            <TableColumn fx:id="occupationColumn" onEditCommit="#editOccupationColumn" prefWidth="102.0"
-                         text="Occupation"/>
-            <TableColumn fx:id="entryPointColumn" onEditCommit="#editEntryPointColumn" prefWidth="76.0"
-                         text="Entry Point"/>
-            <TableColumn fx:id="referralColumn" onEditCommit="#editReferralColumn" prefWidth="60.0" text="Referral?"/>
+            <TableColumn fx:id="firstNameColumn" onEditCommit="#editFirstNameColumn" prefWidth="75.0" text="First Name" />
+        <TableColumn fx:id="lastNameColumn" onEditCommit="#editLastNameColumn" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="hospitalNumberColumn" onEditCommit="#editHospitalNumberColumn" prefWidth="75.0" text="Hospital No." />
+        <TableColumn fx:id="ageColumn" onEditCommit="#editAgeColumn" prefWidth="45.0" text="Age" />
+            <TableColumn fx:id="patientAddressColumn" onEditCommit="#editAddressColumn" prefWidth="125.0" text="Address" />
+            <TableColumn fx:id="patientPhoneColumn" onEditCommit="#editPatientPhoneColumn" prefWidth="94.0" text="Phone Number" />
+            <TableColumn fx:id="patientGenderColumn" onEditCommit="#editPatientGenderColumn" prefWidth="51.0" text="Gender" />
+            <TableColumn fx:id="occupationColumn" onEditCommit="#editOccupationColumn" prefWidth="102.0" text="Occupation" />
+            <TableColumn fx:id="entryPointColumn" onEditCommit="#editEntryPointColumn" prefWidth="76.0" text="Entry Point" />
+            <TableColumn fx:id="referralColumn" onEditCommit="#editReferralColumn" prefWidth="60.0" text="Referral?" />
         </columns>
     </TableView>
 </AnchorPane>

@@ -5,7 +5,6 @@ public class Staff {
     private String id;
     private String gender;
     private String age;
-
     private String phone;
     private String category;
     private String position;
