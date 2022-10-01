@@ -8,124 +8,101 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.AppointmentController">
-    <children>
-        <BorderPane layoutX="-6.0" prefHeight="800.0" prefWidth="1926.0">
-            <left>
-                <VBox prefHeight="941.0" prefWidth="196.0" style="-fx-background-color: #1b0119;" BorderPane.alignment="CENTER">
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#btn" prefHeight="74.0" prefWidth="155.0" style="-fx-background-color: #fb83f2;" text="Add ">
-                            <font>
-                                <Font name="Book Antiqua Bold" size="28.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="20.0" right="10.0" top="40.0" />
-                            </VBox.margin>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="74.0" prefWidth="173.0" style="-fx-background-color: #fb83f2;" text="Delete">
-                            <font>
-                                <Font name="Book Antiqua Bold" size="28.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
-                            </VBox.margin>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#logout" prefHeight="63.0" prefWidth="196.0" style="-fx-background-color: #f903b9;" text="Logout">
-                            <font>
-                                <Font name="Book Antiqua Bold" size="30.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#home" prefHeight="59.0" prefWidth="203.0" style="-fx-background-color: #f903b9;" text="Home">
-                            <font>
-                                <Font name="Book Antiqua Bold" size="30.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                    </children>
-                </VBox>
-            </left>
-            <top>
-                <BorderPane prefHeight="108.0" prefWidth="1920.0" style="-fx-background-color: #f49ee6;" BorderPane.alignment="CENTER">
-                    <left>
-                        <ImageView fitHeight="111.0" fitWidth="321.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                            <image>
-                                <Image url="@logo.png" />
-                            </image>
-                        </ImageView>
-                    </left>
-                    <center>
-                        <Label prefHeight="61.0" prefWidth="921.0" text="Add Appointment" BorderPane.alignment="CENTER">
-                            <font>
-                                <Font name="Book Antiqua Bold" size="48.0" />
-                            </font>
-                        </Label>
-                    </center>
-                </BorderPane>
-            </top>
-            <center>
-                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aa058e;" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label layoutX="6.0" layoutY="8.0" prefHeight="57.0" prefWidth="349.0" text="Name Of Patient " textFill="#e2dfeb">
-                            <font>
-                                <Font name="Book Antiqua" size="36.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="name" layoutX="278.0" layoutY="20.0" prefHeight="33.0" prefWidth="283.0" />
-                        <Label layoutX="6.0" layoutY="93.0" prefHeight="57.0" prefWidth="270.0" text="ID Of Patient" textFill="#e2dfeb">
-                            <font>
-                                <Font name="Book Antiqua" size="36.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="id" layoutX="278.0" layoutY="105.0" prefHeight="33.0" prefWidth="285.0" />
-                        <Label layoutX="14.0" layoutY="290.0" prefHeight="57.0" prefWidth="353.0" text="The Suitable Date" textFill="#e2dfeb">
-                            <font>
-                                <Font name="Book Antiqua" size="36.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="14.0" layoutY="199.0" prefHeight="57.0" prefWidth="297.0" text="Specialization" textFill="#e2dfeb">
-                            <font>
-                                <Font name="Book Antiqua" size="36.0" />
-                            </font>
-                        </Label>
-                        <TableView fx:id="tabel" layoutX="584.0" prefHeight="685.0" prefWidth="653.0">
-                            <columns>
-                                <TableColumn fx:id="dname" onEditCommit="#changn" prefWidth="132.0" text="Name of Patient" />
-                                <TableColumn fx:id="iname" onEditCommit="#changi" prefWidth="131.0" text="ID of Patient" />
-                                <TableColumn fx:id="sname" onEditCommit="#changs" prefWidth="101.0" text="Specialization" />
-                                <TableColumn fx:id="date" prefWidth="126.0" text="Date" />
-                                <TableColumn fx:id="nameo" prefWidth="162.0" text="Name of Doctor" />
-                            </columns>
-                        </TableView>
-                        <DatePicker fx:id="d" layoutX="300.0" layoutY="301.0" prefHeight="35.0" prefWidth="275.0" />
-                        <TextField fx:id="sp" layoutX="278.0" layoutY="211.0" prefHeight="33.0" prefWidth="285.0" />
-                    </children>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.AppointmentController">
+    <BorderPane layoutX="-6.0">
+        <center>
+            <AnchorPane BorderPane.alignment="CENTER">
+                <Pane layoutX="28.0" layoutY="54.0">
+                    <Label layoutX="92.0" layoutY="30.0" text="Name Of Patient ">
+                        <font>
+                            <Font name="System Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="patientNameTextField" layoutX="248.0" layoutY="32.0" prefHeight="25.0"
+                               prefWidth="150.0"/>
+                    <Label layoutX="219.0" layoutY="71.0" text="ID">
+                        <font>
+                            <Font name="System Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="patientIdTextField" layoutX="248.0" layoutY="71.0" prefHeight="25.0"
+                               prefWidth="150.0"/>
+                    <Label layoutX="88.0" layoutY="150.0" text="The Suitable Date">
+                        <font>
+                            <Font name="System Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <Label layoutX="67.0" layoutY="109.0" text="Appointment Venue">
+                        <font>
+                            <Font name="System Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <DatePicker fx:id="datePicker" layoutX="248.0" layoutY="151.0" prefHeight="25.0"
+                                prefWidth="150.0"/>
+                    <TextField fx:id="venueTextField" layoutX="248.0" layoutY="109.0" prefHeight="25.0"
+                               prefWidth="150.0"/>
+                    <Button fx:id="addButton" layoutX="248.0" layoutY="189.0" mnemonicParsing="false"
+                            onAction="#addButtonClicked" text="Add ">
+                        <font>
+                            <Font name="Book Antiqua Bold" size="16.5"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </Button>
+                    <Button fx:id="deleteButton" layoutX="327.0" layoutY="189.0" mnemonicParsing="false"
+                            onAction="#deleteButtonClicked" text="Delete">
+                        <font>
+                            <Font name="Book Antiqua Bold" size="16.5"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </Button>
+                    <Button fx:id="logoutButton" layoutX="324.0" layoutY="233.0" mnemonicParsing="false"
+                            onAction="#logoutButtonClicked" text="Logout">
+                        <font>
+                            <Font name="Book Antiqua Bold" size="16.5"/>
+                        </font>
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </Button>
+                    <Button fx:id="homeButton" layoutX="249.0" layoutY="233.0" mnemonicParsing="false"
+                            onAction="#homeButtonClicked" text="Home">
+                        <font>
+                            <Font name="Book Antiqua Bold" size="16.5"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND"/>
+                        </cursor>
+                    </Button>
                 </Pane>
-            </center>
-        </BorderPane>
-    </children>
+                <Pane layoutX="443.0" layoutY="54.0" prefWidth="492.0">
+                    <TableView fx:id="tableView" prefHeight="319.0" prefWidth="492.0">
+                        <columns>
+                            <TableColumn fx:id="patientNameColumn" onEditCommit="#editPatientNameColumn"
+                                         prefWidth="132.0" text="Name"/>
+                            <TableColumn fx:id="patientIdColumn" onEditCommit="#editPatientId" prefWidth="131.0"
+                                         text="ID"/>
+                            <TableColumn fx:id="venueColumn" onEditCommit="#editVenueColumn" prefWidth="101.0"
+                                         text="Venue"/>
+                            <TableColumn fx:id="dateColumn" onEditCommit="#editDateColumn" prefWidth="126.0"
+                                         text="Date"/>
+                        </columns>
+                    </TableView>
+                </Pane>
+            </AnchorPane>
+        </center>
+    </BorderPane>
 </AnchorPane>

@@ -24,7 +24,13 @@ public class HomepageController {
     private Button logoutButton;
     @FXML
     void appointmentButtonClicked(ActionEvent event) throws IOException{
-
+        Parent root = FXMLLoader.load(getClass().getResource("appointment.fxml"));
+        Scene scene = new Scene(root, 1100, 500);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Appointment");
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML
     void staffButtonClicked(ActionEvent event) throws IOException{
