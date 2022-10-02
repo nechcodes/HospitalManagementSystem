@@ -35,10 +35,6 @@ public class Drug {
         return drugName.get();
     }
 
-    public SimpleStringProperty drugNameProperty() {
-        return drugName;
-    }
-
     public void setDrugName(String drugName) {
         this.drugName.set(drugName);
     }
@@ -47,16 +43,8 @@ public class Drug {
         return drugDose.get();
     }
 
-    public SimpleStringProperty drugDoseProperty() {
-        return drugDose;
-    }
-
     public void setDrugDose(String drugDose) {
         this.drugDose.set(drugDose);
-    }
-
-    public SimpleStringProperty getFormulation() {
-        return formulation;
     }
 
     public SimpleStringProperty formulationProperty() {
@@ -69,10 +57,6 @@ public class Drug {
 
     public String getDrugClass() {
         return drugClass.get();
-    }
-
-    public SimpleStringProperty drugClassProperty() {
-        return drugClass;
     }
 
     public void setDrugClass(String drugClass) {
@@ -110,6 +94,7 @@ public class Drug {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
+
     public String getQuantityForm() {
         return quantityForm;
     }

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PatientController implements Initializable {
@@ -88,7 +89,7 @@ public class PatientController implements Initializable {
 
 
     @FXML
-    void addButtonClicked(ActionEvent event) {
+    void addButtonClicked() {
         Patient p = new Patient(firstNameTextField.getText(), lastNameTextField.getText(),
                 hospitalNumberTextField.getText(), ageTextField.getText(), addressTextField.getText(), phoneTextField.getText(),
                 genderCombo.getValue(), occupationTextField.getText(), entryPointCombo.getValue(),
@@ -97,7 +98,7 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void deleteButtonClicked(ActionEvent event) {
+    void deleteButtonClicked() {
             ObservableList<Patient> allPatients, selectedRow;
             allPatients = patientTableView.getItems();
             selectedRow = patientTableView.getSelectionModel().getSelectedItems();
@@ -168,7 +169,7 @@ public class PatientController implements Initializable {
 
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
         Scene scene = new Scene(root, 800, 600);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -179,7 +180,7 @@ public class PatientController implements Initializable {
 
     @FXML
     void logoutButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         Scene scene = new Scene(root, 600, 500);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();

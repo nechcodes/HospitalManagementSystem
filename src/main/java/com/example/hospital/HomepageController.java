@@ -6,25 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HomepageController {
     @FXML
-    private Button pharmacyButton;
-    @FXML
-    private Button doctorButton;
-    @FXML
-    private Button patientButton;
-    @FXML
-    private Button appointmentButton;
-    @FXML
-    private Button logoutButton;
-    @FXML
     void appointmentButtonClicked(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("appointment.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("appointment.fxml")));
         Scene scene = new Scene(root, 1100, 500);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -34,7 +24,7 @@ public class HomepageController {
     }
     @FXML
     void staffButtonClicked(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("staff.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("staff.fxml")));
         Scene scene = new Scene(root, 1200, 600);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -45,7 +35,7 @@ public class HomepageController {
     }
     @FXML
     void patientButtonClicked(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("patient.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patient.fxml")));
         Scene scene = new Scene(root, 1200, 600);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -55,7 +45,7 @@ public class HomepageController {
     }
     @FXML
     void logoutButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         Scene scene = new Scene(root, 600, 500);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -65,7 +55,7 @@ public class HomepageController {
     }
     @FXML
     void pharmacyButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("pharmacy.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pharmacy.fxml")));
         Scene scene = new Scene(root, 1200, 600);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -73,5 +63,4 @@ public class HomepageController {
         stage.setScene(scene);
         stage.show();
     }
-
 }
