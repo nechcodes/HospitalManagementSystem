@@ -200,16 +200,16 @@ public class PatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
-        hospitalNumberColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("hospitalNumber"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("age"));
-        patientGenderColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("gender"));
-        patientPhoneColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("phone"));
-        occupationColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("occupation"));
-        patientAddressColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("address"));
-        entryPointColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("entryPoint"));
-        referralColumn.setCellValueFactory(new PropertyValueFactory<Patient, String>("referral"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        hospitalNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hospitalNumber"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        patientGenderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        patientPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        occupationColumn.setCellValueFactory(new PropertyValueFactory<>("occupation"));
+        patientAddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        entryPointColumn.setCellValueFactory(new PropertyValueFactory<>("entryPoint"));
+        referralColumn.setCellValueFactory(new PropertyValueFactory<>("referral"));
 
         patientTableView.setItems(getPatient());
         patientTableView.setEditable(true);
