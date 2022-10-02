@@ -126,11 +126,8 @@ public class PharmacyController implements Initializable {
 
     public ObservableList<Dispenser> getDispenser() {
         ObservableList<Dispenser> prescription = FXCollections.observableArrayList();
-        prescription.add(new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
-                dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
-                dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
-                dispenseFrequencyCombo.getValue(), dispenseQuantityField.getText(),
-                Double.parseDouble(dispenseUnitPriceField.getText())));
+        prescription.add(new Dispenser("Tabs", "Paracetamol", "Analgesics",
+                "1g", "3 Days", "TDS", "18", "20"));
         return prescription;
     }
 
@@ -152,16 +149,16 @@ public class PharmacyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("drugName"));
-        stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("drugClass"));
-        stockDoseColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("drugDose"));
-        stockQuantityFormColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("quantityForm"));
-        stockQuantityNumberColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("quantity"));
-        stockFormulationColumn.setCellValueFactory(new PropertyValueFactory<Drug,String>("formulation"));
-        stockTabsPerPackColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("tabletsPerPack"));
-        stockUnitPriceColumn.setCellValueFactory(new PropertyValueFactory<Drug, String>("unitPrice"));
-        stockExpDateColumn.setCellValueFactory(new PropertyValueFactory<Drug,Date>("expDate"));
-        stockPurchaseDateColumn.setCellValueFactory(new PropertyValueFactory<Drug, Date>("purchaseDate"));
+        stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("drugName"));
+        stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<>("drugClass"));
+        stockDoseColumn.setCellValueFactory(new PropertyValueFactory<>("drugDose"));
+        stockQuantityFormColumn.setCellValueFactory(new PropertyValueFactory<>("quantityForm"));
+        stockQuantityNumberColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        stockFormulationColumn.setCellValueFactory(new PropertyValueFactory<>("formulation"));
+        stockTabsPerPackColumn.setCellValueFactory(new PropertyValueFactory<>("tabletsPerPack"));
+        stockUnitPriceColumn.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        stockExpDateColumn.setCellValueFactory(new PropertyValueFactory<>("expDate"));
+        stockPurchaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
 
         stockTableView.setItems(getDrug());
         stockTableView.setEditable(false);
@@ -175,15 +172,16 @@ public class PharmacyController implements Initializable {
         stockPurchaseDateColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         stockExpDateColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
 
-        dispenseDrugNameColumn.setCellValueFactory(new PropertyValueFactory<Dispenser, String>("dName"));
-        dispenseDoseColumn.setCellValueFactory(new PropertyValueFactory<Dispenser,String>("dDose"));
-        dispenseFormulationColumn.setCellValueFactory(new PropertyValueFactory<Dispenser,String>("dFormulation"));
-        dispenseFrequencyColumn.setCellValueFactory(new PropertyValueFactory<Dispenser, String>("dFrequency"));
-        dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<Dispenser, String>("dUnitPrice"));
-        dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<Dispenser, String> ("dDuration"));
-        dispenseTotalBillColumn.setCellValueFactory(new PropertyValueFactory<Dispenser, String>("dTotalBill"));
+        dispenseDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("dName"));
+        dispenseDoseColumn.setCellValueFactory(new PropertyValueFactory<>("dDose"));
+        dispenseFormulationColumn.setCellValueFactory(new PropertyValueFactory<>("dFormulation"));
+        dispenseFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("dFrequency"));
+        dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<>("dUnitPrice"));
+        dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<> ("dDuration"));
+        dispenseTotalBillColumn.setCellValueFactory(new PropertyValueFactory<>("dTotalBill"));
 
         dispenseTableView.setEditable(false);
+        dispenseTableView.setItems(getDispenser());
         dispenseDrugNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseDoseColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseFormulationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -249,7 +247,7 @@ public class PharmacyController implements Initializable {
                 dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
                 dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
                 dispenseFrequencyCombo.getValue(), dispenseQuantityField.getText(),
-                Double.parseDouble(dispenseUnitPriceField.getText()));
+                dispenseUnitPriceField.getText());
         dispenseTableView.getItems().add(d);
     }
 
@@ -271,6 +269,14 @@ public class PharmacyController implements Initializable {
         }
     }
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
+        dispenseTableView.getColumns().size();
+        double total = Double.parseDouble(dispenseQuantityField.getText()) *
+                Double.parseDouble(dispenseUnitPriceField.getText());
 
+        totalAlert.setTitle("Total Bill");
+        totalAlert.setHeaderText("Total bill = " + total);
+        totalAlert.setContentText(String.valueOf(dispenseTableView.getColumns().size()));
+        totalAlert.showAndWait();
     }
+    private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
 }

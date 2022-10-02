@@ -15,20 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
 public class loginPageController implements Initializable {
-    private String hospitalName;
     @FXML
     private TextField usernameTextField;
     @FXML
     private TextField passwordTextField;
     private final Alert logInAlert = new Alert(Alert.AlertType.CONFIRMATION);
     private final Alert signUpAlert = new Alert(Alert.AlertType.CONFIRMATION);
-
-    @FXML
-    private Label hospitalInfo = new Label();
-
-    public void setText() {
-        hospitalInfo.setText(getHospitalName());
-    }
 
     @FXML
     public void loginButtonClicked(ActionEvent event) throws IOException {
@@ -57,11 +49,6 @@ public class loginPageController implements Initializable {
         signUpAlert.setHeaderText("You successfully created an account");
         signUpAlert.setContentText("USERNAME: nechcodes\nPASSWORD: 1234");
         signUpAlert.showAndWait();
-    }
-
-
-    public String getHospitalName() {
-        return hospitalName;
     }
 
     @Override
