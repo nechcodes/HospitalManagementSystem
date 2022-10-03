@@ -1,21 +1,39 @@
 package com.example.hospital;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 
 public class PharmacyController implements Initializable {
+    public Button dispenseAddButton;
+    public Button dispenseRemoveButton;
+    public Button dispenseCheckoutButton;
+    public TableColumn dispenseQuantityColumn;
+    public Button stockAddButton;
+    public Button stockRemoveButton;
+    public Button logoutButton;
+    public TableColumn stockQuantityColumn;
+    public Button homeButton;
+    public Button stockHomeButton;
+    public Button stockLogoutButton;
     @FXML
     private TableColumn stockQuantityFormColumn;
     @FXML
@@ -112,13 +130,6 @@ public class PharmacyController implements Initializable {
     private ObservableList<String> quantityList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6",
             "7", "8", "9", "10");
 
-    public ObservableList<Dispenser> getDispenser() {
-        ObservableList<Dispenser> prescription = FXCollections.observableArrayList();
-        prescription.add(new Dispenser("Tabs", "Paracetamol", "Analgesics",
-                "1g", "3 Days", "TDS", "18", "20"));
-        return prescription;
-    }
-
     public ObservableList<Drug> getDrug() {
         ObservableList<Drug> drugs = FXCollections.observableArrayList();
         drugs.add(new Drug("Paracetamol", "500mg", "Tab", "Analgesic", "Pack",
@@ -134,8 +145,77 @@ public class PharmacyController implements Initializable {
         return drugs;
     }
 
+    public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
+        int selectedIndex = dispenseTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            dispenseTableView.getItems().remove(selectedIndex);
+        }
+    }
+    public void dispenseAddButtonClicked(ActionEvent actionEvent) {
+        Dispenser d = new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
+                dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
+                dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
+                dispenseFrequencyCombo.getValue(), dispenseQuantityField.getText(),
+                dispenseUnitPriceField.getText());
+        dispenseTableView.getItems().add(d);
+    }
+
+    public void stockAddButtonClicked(ActionEvent actionEvent) {
+        Drug d = new Drug(stockDrugNameCombo.getValue(), stockDoseTextField.getText(), stockFormulationCombo.getValue(),
+                stockDrugClassCombo.getValue(), stockQuantityCombo.getValue(),stockQuantityTextField.getText(),
+                stockTabletsPerPackTextField.getText(), stockUnitPriceTextField.getText(),
+                stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        stockTableView.getItems().add(d);
+    }
+    public void stockRemoveButtonClicked(ActionEvent actionEvent) {
+        int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0)
+            stockTableView.getItems().remove(selectedIndex);
+    }
+    public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
+        ObservableList<Dispenser> prescription;
+        prescription = dispenseTableView.getItems();
+        double total = 0;
+
+        for (Dispenser a : prescription) {
+            total += Double.parseDouble(a.getdQuantity()) *
+                    Double.parseDouble(a.getdUnitPrice());
+        }
+
+        totalAlert.setTitle("Total Bill");
+        totalAlert.setHeaderText("Total bill = " + total);
+        totalAlert.showAndWait();
+
+        dispenseTableView.getItems().clear();
+    }
+
+    @FXML
+    void homeButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
+        Scene scene = new Scene(root, 800, 600);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Home Page");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void logoutButtonClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        Scene scene = new Scene(root, 600, 500);
+        Stage stage = new Stage();
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+        stage.setTitle("Login Page");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Initialize all dispense and stock TableViews
         stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("drugName"));
         stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<>("drugClass"));
         stockDoseColumn.setCellValueFactory(new PropertyValueFactory<>("drugDose"));
@@ -164,14 +244,15 @@ public class PharmacyController implements Initializable {
         dispenseFormulationColumn.setCellValueFactory(new PropertyValueFactory<>("dFormulation"));
         dispenseFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("dFrequency"));
         dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<>("dUnitPrice"));
+        dispenseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("dQuantity"));
         dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<> ("dDuration"));
 
         dispenseTableView.setEditable(false);
-        dispenseTableView.setItems(getDispenser());
 
         dispenseDrugNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseDoseColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseFormulationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        dispenseQuantityColumn.setCellFactory((TextFieldTableCell.forTableColumn()));
         dispensePriceColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         dispenseDurationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -219,49 +300,5 @@ public class PharmacyController implements Initializable {
 //        drugTableView.getItems();
 //
 //
-    }
-    public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
-        int selectedIndex = dispenseTableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-                dispenseTableView.getItems().remove(selectedIndex);
-            }
-    }
-    public void dispenseAddButtonClicked(ActionEvent actionEvent) {
-        Dispenser d = new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
-                dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
-                dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
-                dispenseFrequencyCombo.getValue(), dispenseQuantityField.getText(),
-                dispenseUnitPriceField.getText());
-        dispenseTableView.getItems().add(d);
-    }
-
-    public void stockAddButtonClicked(ActionEvent actionEvent) {
-        Drug d = new Drug(stockDrugNameCombo.getValue(), stockDoseTextField.getText(), stockFormulationCombo.getValue(),
-        stockDrugClassCombo.getValue(), stockQuantityCombo.getValue(),stockQuantityTextField.getText(),
-                stockTabletsPerPackTextField.getText(), stockUnitPriceTextField.getText(),
-                stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        stockTableView.getItems().add(d);
-    }
-    public void stockRemoveButtonClicked(ActionEvent actionEvent) {
-        int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0)
-            stockTableView.getItems().remove(selectedIndex);
-    }
-    public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
-        ObservableList<Dispenser> prescription;
-        prescription = dispenseTableView.getItems();
-        double total = 0;
-
-        for (Dispenser a : prescription) {
-            total += Double.parseDouble(a.getdQuantity()) *
-                    Double.parseDouble(a.getdUnitPrice());
-        }
-
-            totalAlert.setTitle("Total Bill");
-            totalAlert.setHeaderText("Total bill = " + total);
-            totalAlert.showAndWait();
-
-            dispenseTableView.getItems().clear();
     }
 }

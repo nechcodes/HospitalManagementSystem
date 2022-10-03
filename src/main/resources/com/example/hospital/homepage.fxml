@@ -5,46 +5,52 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #e7f3ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.HomepageController">
-   <children>
-      <Button fx:id="doctorButton" layoutX="34.0" layoutY="494.0" mnemonicParsing="false" onAction="#staffButtonClicked" text="Staff">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Button>
-      <Button fx:id="patientButton" layoutX="160.0" layoutY="494.0" mnemonicParsing="false" onAction="#patientButtonClicked" text="Patient">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Button>
-      <Button fx:id="appointmentButton" layoutX="321.0" layoutY="494.0" mnemonicParsing="false" onAction="#appointmentButtonClicked" text="Appointment">
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Button>
-      <Label layoutX="222.0" layoutY="144.0" text="Welcome" textFill="#b52626">
-         <font>
-            <Font name="Calibri Bold" size="76.0" />
-         </font>
-      </Label>
-      <Button fx:id="logoutButton" layoutX="662.0" layoutY="22.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout">
-         <font>
-            <Font name="Book Antiqua Bold" size="25.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="pharmacyButton" layoutX="576.0" layoutY="493.0" mnemonicParsing="false" onAction="#pharmacyButtonClicked" text="Pharmacy">
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #e7f3ff;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hospital.HomepageController">
+   <Button fx:id="doctorButton" layoutX="34.0" layoutY="494.0" mnemonicParsing="false" onAction="#staffButtonClicked"
+           text="Staff">
+      <cursor>
+         <Cursor fx:constant="HAND"/>
+      </cursor>
+      <font>
+         <Font name="System Bold" size="32.0"/>
+      </font>
+   </Button>
+   <Button fx:id="patientButton" layoutX="160.0" layoutY="494.0" mnemonicParsing="false"
+           onAction="#patientButtonClicked" text="Patient">
+      <cursor>
+         <Cursor fx:constant="HAND"/>
+      </cursor>
+      <font>
+         <Font name="System Bold" size="32.0"/>
+      </font>
+   </Button>
+   <Button fx:id="appointmentButton" layoutX="321.0" layoutY="494.0" mnemonicParsing="false"
+           onAction="#appointmentButtonClicked" text="Appointment">
+      <font>
+         <Font name="System Bold" size="32.0"/>
+      </font>
+   </Button>
+   <Label layoutX="222.0" layoutY="144.0" text="Welcome" textFill="#b52626">
+      <font>
+         <Font name="Calibri Bold" size="76.0"/>
+      </font>
+   </Label>
+   <Button fx:id="logoutButton" layoutX="662.0" layoutY="22.0" mnemonicParsing="false" onAction="#logoutButtonClicked"
+           text="Logout">
+      <font>
+         <Font name="Book Antiqua Bold" size="25.0"/>
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND"/>
+      </cursor>
+   </Button>
+   <Button fx:id="pharmacyButton" layoutX="576.0" layoutY="493.0" mnemonicParsing="false"
+           onAction="#pharmacyButtonClicked" text="Pharmacy">
+      <font>
+         <Font name="System Bold" size="32.0"/>
+      </font>
+   </Button>
 </AnchorPane>
