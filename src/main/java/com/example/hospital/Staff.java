@@ -50,4 +50,36 @@ public class Staff {
     public String getDepartment() {
         return department;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 }

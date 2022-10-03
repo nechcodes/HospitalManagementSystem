@@ -33,41 +33,31 @@ public class PharmacyController implements Initializable {
     @FXML
     private TableView<Dispenser> dispenseTableView;
     @FXML
-    private Button dispenseAddButton;
-    @FXML
-    private Button dispenseCheckoutButton;
-    @FXML
-    private TableColumn<Dispenser, String> dispenseDoseColumn;
+    private TableColumn dispenseDoseColumn;
     @FXML
     private TextField dispenseDoseTextField;
     @FXML
-    private TableColumn<Dispenser, String> dispenseDrugNameColumn;
+    private TableColumn dispenseDrugNameColumn;
     @FXML
-    private TableColumn<Dispenser, String> dispenseDurationColumn;
+    private TableColumn dispenseDurationColumn;
     @FXML
     private ComboBox<Integer> dispenseDurationCombo1;
     @FXML
     private ComboBox<String> dispenseDurationCombo2;
     @FXML
-    private TableColumn<Dispenser, String> dispenseFormulationColumn;
+    private TableColumn dispenseFormulationColumn;
     @FXML
     private ComboBox<String> dispenseFormulationCombo;
     @FXML
-    private TableColumn<Dispenser, String> dispenseFrequencyColumn;
+    private TableColumn dispenseFrequencyColumn;
     @FXML
     private ComboBox<String> dispenseFrequencyCombo;
     @FXML
-    private TableColumn<Dispenser, String> dispensePriceColumn;
-    @FXML
-    private Button dispenseRemoveButton;
-    @FXML
-    private TableColumn<Dispenser, String> dispenseTotalBillColumn;
+    private TableColumn dispensePriceColumn;
     @FXML
     private ComboBox<String> dispenseDrugNameCombo;
     @FXML
     private TableView<Drug> stockTableView;
-    @FXML
-    private Button stockAddButton;
     @FXML
     private TableColumn<Drug, String> stockDoseColumn;
     @FXML
@@ -89,13 +79,9 @@ public class PharmacyController implements Initializable {
     @FXML
     private DatePicker stockPurchaseDatePicker;
     @FXML
-    private TableColumn<Drug, String> stockQuantityColumn;
-    @FXML
     private ComboBox<String> stockQuantityCombo;
     @FXML
     private TextField stockQuantityTextField;
-    @FXML
-    private Button stockRemoveButton;
     @FXML
     private TextField stockTabletsPerPackTextField;
     @FXML
@@ -104,6 +90,8 @@ public class PharmacyController implements Initializable {
     private TableColumn<Drug, String> stockUnitPriceColumn;
     @FXML
     private TextField stockUnitPriceTextField;
+
+    private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
     private ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
             "Paracetamol", "Diclofenac", "Ibuprofen", "Celecoxib", "Cocodamol");
 
@@ -148,7 +136,6 @@ public class PharmacyController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("drugName"));
         stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<>("drugClass"));
         stockDoseColumn.setCellValueFactory(new PropertyValueFactory<>("drugDose"));
@@ -178,16 +165,15 @@ public class PharmacyController implements Initializable {
         dispenseFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("dFrequency"));
         dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<>("dUnitPrice"));
         dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<> ("dDuration"));
-        dispenseTotalBillColumn.setCellValueFactory(new PropertyValueFactory<>("dTotalBill"));
 
         dispenseTableView.setEditable(false);
         dispenseTableView.setItems(getDispenser());
+
         dispenseDrugNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseDoseColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispenseFormulationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dispensePriceColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         dispenseDurationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        dispenseTotalBillColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
 
         // Initialize all dispense and stock Combos
 
@@ -235,12 +221,10 @@ public class PharmacyController implements Initializable {
 //
     }
     public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
-        ObservableList<Dispenser> selectedRows, allPrescriptions;
-        allPrescriptions = dispenseTableView.getItems();
-        selectedRows = dispenseTableView.getSelectionModel().getSelectedItems();
-        for(Dispenser a: selectedRows){
-            allPrescriptions.remove(a);
-        }
+        int selectedIndex = dispenseTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+                dispenseTableView.getItems().remove(selectedIndex);
+            }
     }
     public void dispenseAddButtonClicked(ActionEvent actionEvent) {
         Dispenser d = new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
@@ -260,23 +244,24 @@ public class PharmacyController implements Initializable {
         stockTableView.getItems().add(d);
     }
     public void stockRemoveButtonClicked(ActionEvent actionEvent) {
-        ObservableList<Drug> selectedRows,allDrugs;
-        allDrugs = stockTableView.getItems();
-        selectedRows= stockTableView.getSelectionModel().getSelectedItems();
-        for(Drug a:selectedRows)
-        {
-            allDrugs.remove(a);
-        }
+        int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0)
+            stockTableView.getItems().remove(selectedIndex);
     }
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
-        dispenseTableView.getColumns().size();
-        double total = Double.parseDouble(dispenseQuantityField.getText()) *
-                Double.parseDouble(dispenseUnitPriceField.getText());
+        ObservableList<Dispenser> prescription;
+        prescription = dispenseTableView.getItems();
+        double total = 0;
 
-        totalAlert.setTitle("Total Bill");
-        totalAlert.setHeaderText("Total bill = " + total);
-        totalAlert.setContentText(String.valueOf(dispenseTableView.getColumns().size()));
-        totalAlert.showAndWait();
+        for (Dispenser a : prescription) {
+            total += Double.parseDouble(a.getdQuantity()) *
+                    Double.parseDouble(a.getdUnitPrice());
+        }
+
+            totalAlert.setTitle("Total Bill");
+            totalAlert.setHeaderText("Total bill = " + total);
+            totalAlert.showAndWait();
+
+            dispenseTableView.getItems().clear();
     }
-    private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
 }

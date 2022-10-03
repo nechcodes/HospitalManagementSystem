@@ -46,7 +46,7 @@
                       <TableColumn fx:id="staffNameColumn" onEditCommit="#editStaffNameColumn" prefWidth="96.0" text="Name" />
                       <TableColumn fx:id="staffIdColumn" onEditCommit="#editStaffIdColumn" prefWidth="58.0" text="ID" />
                         <TableColumn fx:id="staffGenderColumn" onEditCommit="#editStaffGenderColumn" prefWidth="52.0" text="Gender" />
-                        <TableColumn fx:id="staffDOBColumn" onEditCommit="#editStaffDOBColumn" prefWidth="79.0" text="DOB" />
+                        <TableColumn fx:id="staffDOBColumn" onEditCommit="#editStaffAgeColumn" prefWidth="79.0" text="DOB" />
                         <TableColumn fx:id="staffPhoneColumn" onEditCommit="#editStaffPhoneColumn" prefWidth="100.0" text="Phone" />
                         <TableColumn fx:id="staffCategoryColumn" onEditCommit="#editStaffCategoryColumn" prefWidth="122.0" text="Category" />
                         <TableColumn fx:id="staffPositionColumn" onEditCommit="#editStaffPositionColumn" prefWidth="108.0" text="Position" />

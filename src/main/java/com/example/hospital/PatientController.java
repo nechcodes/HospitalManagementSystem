@@ -99,12 +99,9 @@ public class PatientController implements Initializable {
 
     @FXML
     void deleteButtonClicked() {
-            ObservableList<Patient> allPatients, selectedRow;
-            allPatients = patientTableView.getItems();
-            selectedRow = patientTableView.getSelectionModel().getSelectedItems();
-
-            for (Patient p : selectedRow)
-                allPatients.remove(p);
+        int selectedIndex = patientTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0)
+            patientTableView.getItems().remove(selectedIndex);
     }
 
     @FXML

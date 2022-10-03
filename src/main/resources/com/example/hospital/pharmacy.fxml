@@ -95,8 +95,8 @@
                         <TableColumn fx:id="dispenseDoseColumn" prefWidth="45.0" text="Dose" />
                         <TableColumn fx:id="dispenseFrequencyColumn" prefWidth="94.0" text="Frequency" />
                         <TableColumn fx:id="dispenseDurationColumn" prefWidth="56.0" text="Duration" />
+                        <TableColumn fx:id="dispenseTotalBillColumn" prefWidth="75.0" text="Quantity" />
                         <TableColumn fx:id="dispensePriceColumn" prefWidth="75.0" text="Price (#)" />
-                        <TableColumn fx:id="dispenseTotalBillColumn" prefWidth="75.0" text="Total (#)" />
                      </columns>
                   </TableView>
                </Pane>

@@ -24,13 +24,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
-
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button deleteButton;
-    @FXML
-    private Button homeButton;
     @FXML
     private TableView<Staff> staffTableView;
     @FXML
@@ -65,8 +58,6 @@ public class StaffController implements Initializable {
     private TextField staffPhoneTextField;
     @FXML
     private ComboBox<String> staffPositionCombo;
-    @FXML
-    private TextField staffSpecialtyTextField;
 
     private ObservableList<String> categoryList = FXCollections.observableArrayList(
             "Doctor", "Nurse", "Pharmacist", "Security", "Lab Scientist", "Services", "ICT");
@@ -92,49 +83,54 @@ public class StaffController implements Initializable {
 
     @FXML
     void deleteButtonClicked(ActionEvent event) {
-        ObservableList<Staff> selectedRows, allStaff;
-        allStaff = staffTableView.getItems();
-        selectedRows = staffTableView.getSelectionModel().getSelectedItems();
-
-        for(Staff a : selectedRows){
-            allStaff.remove(a);
-        }
+        int selectedIndex = staffTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0)
+            staffTableView.getItems().remove(selectedIndex);
     }
 
     @FXML
-    void editStaffCategoryColumn(ActionEvent event) {
-
+    void editStaffCategoryColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setCategory(event.getNewValue());
     }
 
     @FXML
-    void editStaffDOBColumn(ActionEvent event) {
-
+    void editStaffAgeColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setAge(event.getNewValue());
     }
     @FXML
-    void editStaffGenderColumn(ActionEvent event) {
-
-    }
-
-    @FXML
-    void editStaffIdColumn(ActionEvent event) {
-
-    }
-    @FXML
-    void editStaffNameColumn(ActionEvent event) {
-
+    void editStaffGenderColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setGender(event.getNewValue());
     }
 
     @FXML
-    void editStaffPositionColumn(ActionEvent event) {
-
+    void editStaffIdColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setId(event.getNewValue());
+    }
+    @FXML
+    void editStaffNameColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setName(event.getNewValue());
     }
 
     @FXML
-    void editStaffPhoneColumn(ActionEvent event) {
+    void editStaffPositionColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setPosition(event.getNewValue());
+    }
 
+    @FXML
+    void editStaffPhoneColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setPhone(event.getNewValue());
     }
     @FXML
-    void editStaffDepartmentColumn(TableColumn.CellEditEvent cellEditEvent) {
+    void editStaffDepartmentColumn(TableColumn.CellEditEvent<Staff, String> event) {
+        Staff staff =(Staff) staffTableView.getSelectionModel().getSelectedItems();
+        staff.setDepartment(event.getNewValue());
     }
 
     @FXML
