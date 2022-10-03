@@ -38,7 +38,7 @@ login details -
 ![Patient](https://user-images.githubusercontent.com/102044949/193488432-f62db8da-a00f-462b-b082-408547df5d36.png)
 
 ### Appointment
-!Appointment](https://user-images.githubusercontent.com/102044949/193488265-179df52e-ece6-4bac-99a9-9e5ae8f43cef.png)
+![Appointment](https://user-images.githubusercontent.com/102044949/193488265-179df52e-ece6-4bac-99a9-9e5ae8f43cef.png)
 
 ### Pharmacy Dispenser
 ![Pharmacy Dispenser](https://user-images.githubusercontent.com/102044949/193488724-cf75e9a5-5c0b-4dde-889f-faca8fcf4115.png)
