@@ -2,7 +2,9 @@ package com.example.hospital;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -108,8 +110,8 @@ public class PharmacyController implements Initializable {
     private TableColumn<Drug, String> stockUnitPriceColumn;
     @FXML
     private TextField stockUnitPriceTextField;
-
     private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
+    private final Alert databaseAlert = new Alert(Alert.AlertType.INFORMATION);
     private ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
             "Paracetamol", "Diclofenac", "Ibuprofen", "Celecoxib", "Cocodamol");
 
@@ -129,6 +131,9 @@ public class PharmacyController implements Initializable {
             "Day", "Days", "Week", "Weeks", "Months");
     private ObservableList<String> quantityList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6",
             "7", "8", "9", "10");
+
+    DatabaseConnection connectNow = new DatabaseConnection();
+    Connection connectDB = connectNow.getConnection();
 
     public ObservableList<Drug> getDrug() {
         ObservableList<Drug> drugs = FXCollections.observableArrayList();
@@ -151,6 +156,7 @@ public class PharmacyController implements Initializable {
             dispenseTableView.getItems().remove(selectedIndex);
         }
     }
+
     public void dispenseAddButtonClicked(ActionEvent actionEvent) {
         Dispenser d = new Dispenser(dispenseFormulationCombo.getValue(), dispenseDrugNameCombo.getValue(),
                 dispenseDrugClassCombo.getValue(), dispenseDoseTextField.getText(),
@@ -168,11 +174,13 @@ public class PharmacyController implements Initializable {
                 stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         stockTableView.getItems().add(d);
     }
+
     public void stockRemoveButtonClicked(ActionEvent actionEvent) {
         int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0)
             stockTableView.getItems().remove(selectedIndex);
     }
+
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
         ObservableList<Dispenser> prescription;
         prescription = dispenseTableView.getItems();
@@ -195,7 +203,7 @@ public class PharmacyController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
         Scene scene = new Scene(root, 800, 600);
         Stage stage = new Stage();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         stage.setTitle("Home Page");
         stage.setScene(scene);
         stage.show();
@@ -206,7 +214,7 @@ public class PharmacyController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
         Scene scene = new Scene(root, 600, 500);
         Stage stage = new Stage();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
@@ -245,7 +253,7 @@ public class PharmacyController implements Initializable {
         dispenseFrequencyColumn.setCellValueFactory(new PropertyValueFactory<>("dFrequency"));
         dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<>("dUnitPrice"));
         dispenseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("dQuantity"));
-        dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<> ("dDuration"));
+        dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<>("dDuration"));
 
         dispenseTableView.setEditable(false);
 
@@ -258,35 +266,43 @@ public class PharmacyController implements Initializable {
 
         // Initialize all dispense and stock Combos
 
-        dispenseDrugNameCombo.setValue("choose drug");
-        dispenseDrugNameCombo.setItems(nameOfDrugList.sorted());
+        try {
+            Statement statement = connectDB.createStatement();
 
-        stockDrugNameCombo.setValue("choose drug");
-        stockDrugNameCombo.setItems(nameOfDrugList.sorted());
+            String newQuery = "SELECT class FROM pharmacy.dispenser GROUP BY class";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+            ObservableList data = FXCollections.observableArrayList();
 
-        dispenseFormulationCombo.setValue("Select");
-        dispenseFormulationCombo.setItems(drugFormulationList);
+            while (resultSet.next()) {
+                    data.add(resultSet.getString(1));
+            }
+            dispenseDrugClassCombo.setItems(data);
+            stockDrugClassCombo.setItems(data);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        stockFormulationCombo.setValue("Select");
-        stockFormulationCombo.setItems(drugFormulationList);
+            stockFormulationCombo.setValue("Select");
+            stockFormulationCombo.setItems(drugFormulationList);
 
-        dispenseFrequencyCombo.setValue("Select");
-        dispenseFrequencyCombo.setItems(drugFrequencyList);
+            dispenseFrequencyCombo.setValue("Select");
+            dispenseFrequencyCombo.setItems(drugFrequencyList);
 
-        dispenseDrugClassCombo.setValue("Select");
-        dispenseDrugClassCombo.setItems(drugClassList);
+//            dispenseDrugClassCombo.setValue("Select");
+//            dispenseDrugClassCombo.setItems(drugClassList);
+//
+//            stockDrugClassCombo.setValue("Select");
+//            stockDrugClassCombo.setItems(drugClassList);
 
-        stockDrugClassCombo.setValue("Select");
-        stockDrugClassCombo.setItems(drugClassList);
+            dispenseDurationCombo1.setValue(3);
+            dispenseDurationCombo1.setItems(drugDurationList1);
 
-        dispenseDurationCombo1.setValue(3);
-        dispenseDurationCombo1.setItems(drugDurationList1);
+            dispenseDurationCombo2.setValue("Days");
+            dispenseDurationCombo2.setItems(drugDurationList2);
 
-        dispenseDurationCombo2.setValue("Days");
-        dispenseDurationCombo2.setItems(drugDurationList2);
-
-        stockQuantityCombo.setValue("1");
-        stockQuantityCombo.setItems(quantityList);
+            stockQuantityCombo.setValue("1");
+            stockQuantityCombo.setItems(quantityList);
 
 //        THE FOLLOWING CODE CAN BE USED TO INSERT NEW COLUMNS (REMEMBER TO FIRST CREATE TableView FIELDS FOR THESE COLUMNS
 //        AND REPLACE THE PARAMETERS BELOW WITH THE NAMES OF THE FIELDS
@@ -300,5 +316,67 @@ public class PharmacyController implements Initializable {
 //        drugTableView.getItems();
 //
 //
+        }
+
+    public void dispenseDrugNameSelected(ActionEvent actionEvent) {
+        try {
+            Statement statement = connectDB.createStatement();
+
+            String newQuery = "SELECT form FROM pharmacy.dispenser WHERE name = '" +
+                    dispenseDrugNameCombo.getValue() + "'";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+            ObservableList data = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+            dispenseFormulationCombo.setItems(data);
+            stockFormulationCombo.setItems(data);
+
+            String unitPriceQuery = "SELECT unit_price FROM pharmacy.dispenser WHERE name = '" +
+                    dispenseDrugNameCombo.getValue() + "'";
+            ResultSet unitPriceResultSet = statement.executeQuery(unitPriceQuery);
+
+            while (unitPriceResultSet.next()) {
+                dispenseUnitPriceField.setText(unitPriceResultSet.getString(1));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void dispenseDrugClassSelected(ActionEvent actionEvent) {
+        try {
+            Statement statement = connectDB.createStatement();
+
+            String newQuery = "SELECT name FROM pharmacy.dispenser WHERE class = '" +
+                    dispenseDrugClassCombo.getValue() + "'";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+            ObservableList data = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+            dispenseDrugNameCombo.setItems(data);
+            stockDrugNameCombo.setItems(data);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dispenseFormulationSelected(ActionEvent actionEvent) {
+    }
+
+//    public void setResultSet(String input) {
+//
+//    }
+//    public ResultSet getResultSet() {
+//        return resultSet;
+//    }
+//
+//    public ArrayList<String> getResult() {
+//        return result;
+//    }
 }

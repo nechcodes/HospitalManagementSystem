@@ -2,6 +2,10 @@ package com.example.hospital;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 import javafx.fxml.FXML;
@@ -22,10 +26,11 @@ public class loginPageController implements Initializable {
     private final Alert logInAlert = new Alert(Alert.AlertType.CONFIRMATION);
     private final Alert signUpAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
+    private final Alert databaseAlert = new Alert(Alert.AlertType.INFORMATION);
     @FXML
     public void loginButtonClicked(ActionEvent event) throws IOException {
-        if (Objects.equals(usernameTextField.getText(), "nechcodes") &&
-                Objects.equals(passwordTextField.getText(), "1234")) {
+//        if (Objects.equals(usernameTextField.getText(), "nechcodes") &&
+//                Objects.equals(passwordTextField.getText(), "1234")) {
 
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
             Scene scene = new Scene(root, 800, 600);
@@ -34,13 +39,13 @@ public class loginPageController implements Initializable {
             stage.setTitle("Homepage");
             stage.setScene(scene);
             stage.show();
-        }
-        else {
-            logInAlert.setTitle("Failed");
-            logInAlert.setHeaderText("Incorrect username or password");
-            logInAlert.setContentText("Click 'sign Up'");
-            logInAlert.showAndWait();
-        }
+//        }
+//        else {
+//            logInAlert.setTitle("Failed");
+//            logInAlert.setHeaderText("Incorrect username or password");
+//            logInAlert.setContentText("Click 'sign Up'");
+//            logInAlert.showAndWait();
+//        }
     }
 
     @FXML
