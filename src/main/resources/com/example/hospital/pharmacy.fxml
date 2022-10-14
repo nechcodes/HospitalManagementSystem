@@ -18,7 +18,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.PharmacyController">
    <top>
-      <TabPane minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane minWidth="-Infinity" prefHeight="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <Tab text="Dispense">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <ComboBox fx:id="dispenseDrugClassCombo" layoutX="186.0" layoutY="29.0" onAction="#dispenseDrugClassSelected" prefWidth="150.0" promptText="Select">
@@ -29,12 +29,12 @@
                      <InnerShadow />
                   </effect>
                </ComboBox>
-               <Label layoutX="50.0" layoutY="62.0" text="Drug Name">
+               <Label layoutX="50.0" layoutY="101.0" text="Drug Name">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Label>
-               <Label layoutX="50.0" layoutY="99.0" text="Formulation">
+               <Label layoutX="50.0" layoutY="65.0" text="Formulation">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
@@ -56,7 +56,7 @@
                   </font>
                </Label>
                <TextField fx:id="dispenseUnitPriceField" layoutX="184.0" layoutY="278.0" prefHeight="25.0" prefWidth="150.0" />
-               <Label layoutX="51.0" layoutY="135.0" text="Dose:">
+               <Label layoutX="51.0" layoutY="135.0" text="Dose">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
@@ -71,12 +71,12 @@
                      <Font name="System Bold" size="14.0" />
                   </font>
                </Button>
-               <Label layoutX="50.0" layoutY="27.0" text="Class of Drug">
+               <Label layoutX="50.0" layoutY="27.0" text="Class">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
                </Label>
-               <ComboBox fx:id="dispenseDrugNameCombo" layoutX="186.0" layoutY="65.0" onAction="#dispenseDrugNameSelected" prefWidth="150.0" promptText="Select">
+               <ComboBox fx:id="dispenseDrugNameCombo" layoutX="186.0" layoutY="101.0" onAction="#dispenseDrugNameSelected" prefWidth="150.0" promptText="Select">
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
@@ -84,7 +84,7 @@
                      <InnerShadow />
                   </effect>
                </ComboBox>
-               <ComboBox fx:id="dispenseFormulationCombo" layoutX="186.0" layoutY="102.0" onAction="#dispenseFormulationSelected" prefWidth="150.0" promptText="Select">
+               <ComboBox fx:id="dispenseFormulationCombo" layoutX="186.0" layoutY="64.0" onAction="#dispenseFormulationSelected" prefWidth="150.0" promptText="Select">
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
@@ -100,13 +100,15 @@
                <Pane layoutX="358.0" layoutY="28.0">
                   <TableView fx:id="dispenseTableView" layoutX="4.0">
                      <columns>
-                        <TableColumn fx:id="dispenseFormulationColumn" prefWidth="75.0" text="Formulation" />
+                        <TableColumn fx:id="dispenseSN" prefWidth="47.0" text="S/N" />
+                        <TableColumn fx:id="dispenseFormulationColumn" prefWidth="103.0" text="Formulation" />
                         <TableColumn fx:id="dispenseDrugNameColumn" prefWidth="105.0" text="Drug Name" />
                         <TableColumn fx:id="dispenseDoseColumn" prefWidth="45.0" text="Dose" />
                         <TableColumn fx:id="dispenseFrequencyColumn" prefWidth="94.0" text="Frequency" />
                         <TableColumn fx:id="dispenseDurationColumn" prefWidth="56.0" text="Duration" />
                         <TableColumn fx:id="dispenseQuantityColumn" prefWidth="75.0" text="Quantity" />
-                        <TableColumn fx:id="dispensePriceColumn" prefWidth="75.0" text="Price (#)" />
+                        <TableColumn fx:id="dispensePriceColumn" prefWidth="69.0" text="Unit Price " />
+                        <TableColumn fx:id="dispenseSalesColumn" prefWidth="81.0" text="Sales" />
                      </columns>
                   </TableView>
                </Pane>
@@ -153,9 +155,9 @@
             </AnchorPane>
          </Tab>
          <Tab text="Stock">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <AnchorPane layoutX="14.0" layoutY="-10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="1280.0">
-                  <ComboBox fx:id="stockDrugNameCombo" layoutX="194.0" layoutY="42.0" prefWidth="150.0">
+            <AnchorPane>
+               <AnchorPane layoutX="7.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <ComboBox fx:id="stockDrugNameCombo" layoutX="186.0" layoutY="30.0" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -163,87 +165,88 @@
                         <InnerShadow />
                      </effect>
                   </ComboBox>
-                  <Label layoutX="28.0" layoutY="43.0" text="Name of Drug:">
+                  <Label layoutX="33.0" layoutY="29.0" text="Name of Drug:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="148.0" text="Dose (mg):">
+                  <Label layoutX="34.0" layoutY="134.0" text="Dose (mg):">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="stockDoseTextField" layoutX="195.0" layoutY="149.0" />
-                  <Label layoutX="29.0" layoutY="182.0" text="Quantity:">
+                  <TextField fx:id="stockDoseTextField" layoutX="187.0" layoutY="137.0" />
+                  <Label layoutX="34.0" layoutY="168.0" text="Quantity:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="stockQuantityTextField" layoutX="195.0" layoutY="183.0" prefHeight="25.0" prefWidth="49.0" />
-                  <Label layoutX="29.0" layoutY="219.0" text="Tablets Per Pack:">
+                  <TextField fx:id="stockQuantityTextField" layoutX="187.0" layoutY="171.0" prefHeight="25.0" prefWidth="49.0" />
+                  <Label layoutX="34.0" layoutY="205.0" text="Tablets Per Pack:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="stockTabletsPerPackTextField" layoutX="195.0" layoutY="216.0" />
-                  <Label layoutX="29.0" layoutY="283.0" text="Purchase Date:">
+                  <TextField fx:id="stockTabletsPerPackTextField" layoutX="187.0" layoutY="204.0" />
+                  <Label layoutX="34.0" layoutY="269.0" text="Purchase Date:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="317.0" text="Exp Date:">
+                  <Label layoutX="34.0" layoutY="303.0" text="Exp Date:">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="249.0" text="Unit Price">
+                  <Label layoutX="34.0" layoutY="235.0" text="Unit Price">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="stockUnitPriceTextField" layoutX="195.0" layoutY="250.0" />
-                  <Pane layoutX="359.0" layoutY="38.0" prefHeight="405.0" prefWidth="815.0">
-                     <TableView fx:id="stockTableView" layoutX="2.0" layoutY="5.0" prefHeight="400.0" prefWidth="810.0">
+                  <TextField fx:id="stockUnitPriceTextField" layoutX="187.0" layoutY="238.0" />
+                  <Pane layoutX="364.0" layoutY="24.0">
+                     <TableView fx:id="stockTableView" layoutY="3.0" prefHeight="406.0" prefWidth="805.0">
                         <columns>
-                           <TableColumn fx:id="stockDrugNameColumn" prefWidth="94.0" text="Drug Name" />
+                           <TableColumn fx:id="stockId" prefWidth="46.0" text="ID" />
+                           <TableColumn fx:id="stockDrugNameColumn" prefWidth="142.0" text="Drug Name" />
                            <TableColumn fx:id="stockFormulationColumn" prefWidth="77.0" text="Formulation" />
                            <TableColumn fx:id="stockDrugClassColumn" prefWidth="72.0" text="Drug Class" />
-                           <TableColumn fx:id="stockDoseColumn" prefWidth="50.0" text="Dose" />
-                           <TableColumn fx:id="stockQuantityColumn" prefWidth="117.0" text="Quantity">
+                           <TableColumn fx:id="stockDoseColumn" prefWidth="54.0" text="Dose" />
+                           <TableColumn fx:id="stockQuantityColumn" minWidth="7.0" prefWidth="84.0" text="Quantity">
                               <columns>
-                                 <TableColumn fx:id="stockQuantityNumberColumn" prefWidth="53.0" text="Number" />
-                                 <TableColumn fx:id="stockQuantityFormColumn" minWidth="0.0" prefWidth="35.0" text="Form" />
+                                 <TableColumn fx:id="stockQuantityNumberColumn" prefWidth="43.0" text="No." />
+                                 <TableColumn fx:id="stockQuantityFormColumn" minWidth="0.0" prefWidth="45.0" text="Form" />
                               </columns></TableColumn>
-                           <TableColumn fx:id="stockTabsPerPackColumn" prefWidth="97.0" text="Tablets Per Pack" />
-                           <TableColumn fx:id="stockUnitPriceColumn" prefWidth="79.0" text="Unit Price (#)" />
-                           <TableColumn fx:id="stockPurchaseDateColumn" prefWidth="128.0" text="Purchase Date" />
-                           <TableColumn fx:id="stockExpDateColumn" minWidth="6.0" prefWidth="124.0" text="Exp Date" />
+                           <TableColumn fx:id="stockUnitPriceColumn" prefWidth="73.0" text="Unit Price" />
+                           <TableColumn fx:id="stockPurchaseDateColumn" prefWidth="125.0" text="Purchase Date" />
+                           <TableColumn fx:id="stockExpDateColumn" minWidth="6.0" prefWidth="106.0" text="Exp Date" />
+                           <TableColumn fx:id="stockSupplierColumn" minWidth="6.0" prefWidth="120.0" text="Supplier" />
                         </columns>
                      </TableView>
                   </Pane>
-                  <Button fx:id="stockAddButton" layoutX="196.0" layoutY="353.0" mnemonicParsing="false" onAction="#stockAddButtonClicked" text="Add">
+                  <Button fx:id="stockAddButton" layoutX="188.0" layoutY="341.0" mnemonicParsing="false" onAction="#stockAddButtonClicked" text="Add">
                      <font>
                         <Font name="System Bold" size="16.5" />
                      </font>
                   </Button>
-                  <Button fx:id="stockRemoveButton" layoutX="261.0" layoutY="353.0" mnemonicParsing="false" onAction="#stockRemoveButtonClicked" text="Remove">
+                  <Button fx:id="stockRemoveButton" layoutX="253.0" layoutY="341.0" mnemonicParsing="false" onAction="#stockRemoveButtonClicked" text="Remove">
                      <font>
                         <Font name="System Bold" size="16.5" />
                      </font>
                   </Button>
-                  <Button fx:id="stockHomeButton" layoutX="196.0" layoutY="399.0" mnemonicParsing="false" onAction="#homeButtonClicked" text="Home">
+                  <Button fx:id="stockHomeButton" layoutX="188.0" layoutY="428.0" mnemonicParsing="false" onAction="#homeButtonClicked" text="Home">
                      <font>
                         <Font name="System Bold" size="16.5" />
                      </font>
                   </Button>
-                  <Button fx:id="stockLogoutButton" layoutX="271.0" layoutY="399.0" mnemonicParsing="false" onAction="#logoutButtonClicked" prefHeight="2.0" text="logout">
+                  <Button fx:id="stockLogoutButton" layoutX="263.0" layoutY="428.0" mnemonicParsing="false" onAction="#logoutButtonClicked" prefHeight="2.0" text="logout">
                      <font>
                         <Font name="System Bold" size="16.5" />
                      </font>
                   </Button>
-                  <DatePicker fx:id="stockExpDatePicker" layoutX="195.0" layoutY="318.0" prefHeight="25.0" prefWidth="150.0" />
-                  <DatePicker fx:id="stockPurchaseDatePicker" layoutX="194.0" layoutY="284.0" prefHeight="25.0" prefWidth="150.0" />
-                  <ComboBox fx:id="stockQuantityCombo" layoutX="245.0" layoutY="183.0" prefHeight="25.0" prefWidth="97.0">
+                  <DatePicker fx:id="stockExpDatePicker" layoutX="187.0" layoutY="306.0" prefHeight="25.0" prefWidth="150.0" />
+                  <DatePicker fx:id="stockPurchaseDatePicker" layoutX="186.0" layoutY="272.0" prefHeight="25.0" prefWidth="150.0" />
+                  <ComboBox fx:id="stockQuantityCombo" layoutX="237.0" layoutY="171.0" prefHeight="25.0" prefWidth="97.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -251,12 +254,12 @@
                         <InnerShadow />
                      </effect>
                   </ComboBox>
-                  <Label layoutX="29.0" layoutY="76.0" text="Formulation">
+                  <Label layoutX="34.0" layoutY="62.0" text="Formulation">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="stockFormulationCombo" layoutX="194.0" layoutY="78.0" prefWidth="150.0">
+                  <ComboBox fx:id="stockFormulationCombo" layoutX="186.0" layoutY="66.0" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -264,12 +267,12 @@
                         <InnerShadow />
                      </effect>
                   </ComboBox>
-                  <Label layoutX="29.0" layoutY="113.0" text="Class of Drug">
+                  <Label layoutX="34.0" layoutY="99.0" text="Class of Drug">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="stockDrugClassCombo" layoutX="195.0" layoutY="114.0" prefWidth="150.0">
+                  <ComboBox fx:id="stockDrugClassCombo" layoutX="187.0" layoutY="102.0" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -277,6 +280,11 @@
                         <InnerShadow />
                      </effect>
                   </ComboBox>
+                  <Button fx:id="stockCheckoutButton" layoutX="189.0" layoutY="387.0" mnemonicParsing="false" onAction="#stockCheckoutButtonClicked" prefHeight="30.0" prefWidth="149.0" text="Checkout">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                </AnchorPane>
             </AnchorPane>
          </Tab>
