@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Drug {
 
-    SimpleStringProperty id;
+    SimpleStringProperty drugId;
     private SimpleStringProperty drugClass;
     private SimpleStringProperty formulation;
     private SimpleStringProperty drugName;
@@ -15,16 +15,23 @@ public class Drug {
     private SimpleStringProperty unitCostPrice;
     private SimpleStringProperty unitSellingPrice;
 
+    private SimpleStringProperty purchaseValue;
+    private SimpleStringProperty salesValue;
+
     public Drug(
-                String drugClass,
-                String formulation,
-                String drugName,
-                String quantity,
-                String unitForm,
-                String purchaseDate,
-                String expDate,
-                String unitCostPrice,
-                String unitSellingPrice) {
+            String drugId,
+            String drugClass,
+            String formulation,
+            String drugName,
+            String quantity,
+            String unitForm,
+            String purchaseDate,
+            String expDate,
+            String unitCostPrice,
+            String unitSellingPrice,
+            String purchaseValue,
+            String salesValue) {
+        this.drugId = new SimpleStringProperty(drugId);
         this.drugClass = new SimpleStringProperty(drugClass);
         this.formulation = new SimpleStringProperty(formulation);
         this.drugName = new SimpleStringProperty(drugName);
@@ -34,18 +41,29 @@ public class Drug {
         this.expDate = new SimpleStringProperty(expDate);
         this.unitCostPrice = new SimpleStringProperty(unitCostPrice);
         this.unitSellingPrice = new SimpleStringProperty(unitSellingPrice);
+
+        purchaseValue = String.valueOf(
+                Integer.valueOf(quantity) * Double.parseDouble(unitCostPrice)
+        );
+
+        salesValue = String.valueOf(
+                Integer.valueOf(quantity) * Double.parseDouble(unitSellingPrice)
+        );
+
+        this.purchaseValue = new SimpleStringProperty(purchaseValue);
+        this.salesValue = new SimpleStringProperty(salesValue);
     }
 
-    public String getId() {
-        return id.get();
+    public String getDrugId() {
+        return drugId.get();
     }
 
-    public SimpleStringProperty idProperty() {
-        return id;
+    public SimpleStringProperty drugIdProperty() {
+        return drugId;
     }
 
-    public void setId(String id) {
-        this.id.set(id);
+    public void setDrugId(String drugId) {
+        this.drugId.set(drugId);
     }
 
     public String getDrugClass() {
@@ -154,5 +172,29 @@ public class Drug {
 
     public void setUnitSellingPrice(String unitSellingPrice) {
         this.unitSellingPrice.set(unitSellingPrice);
+    }
+
+    public String getPurchaseValue() {
+        return purchaseValue.get();
+    }
+
+    public SimpleStringProperty purchaseValueProperty() {
+        return purchaseValue;
+    }
+
+    public void setPurchaseValue(String purchaseValue) {
+        this.purchaseValue.set(purchaseValue);
+    }
+
+    public String getSalesValue() {
+        return salesValue.get();
+    }
+
+    public SimpleStringProperty salesValueProperty() {
+        return salesValue;
+    }
+
+    public void setSalesValue(String salesValue) {
+        this.salesValue.set(salesValue);
     }
 }

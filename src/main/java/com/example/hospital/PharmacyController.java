@@ -24,6 +24,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 public class PharmacyController implements Initializable {
+    public TableColumn stockPurchaseValueColumn;
+    public TableColumn stockSalesValueColumn;
+    public TableColumn stockCostPriceColumn;
+    public ComboBox stockQuantityFormCombo;
+    public Button stockCheckoutButton;
+    public TextField supplierTextField;
+    @FXML
+    private TableColumn dispenseId;
     private int dispenseSN = 1;
     public Button dispenseAddButton;
     public Button dispenseRemoveButton;
@@ -37,7 +45,7 @@ public class PharmacyController implements Initializable {
     public Button stockHomeButton;
     public Button stockLogoutButton;
     public TableColumn dispenseSalesColumn;
-    public TableColumn stockId;
+    public TableColumn stockIdColumn;
     public TableColumn stockSupplierColumn;
     @FXML
     private TableColumn stockQuantityFormColumn;
@@ -84,8 +92,6 @@ public class PharmacyController implements Initializable {
     @FXML
     private TableColumn<Drug, String> stockDoseColumn;
     @FXML
-    private TextField stockDoseTextField;
-    @FXML
     private TableColumn<Drug, String> stockDrugNameColumn;
     @FXML
     private TableColumn<Drug, Date> stockExpDateColumn;
@@ -108,9 +114,11 @@ public class PharmacyController implements Initializable {
     @FXML
     private TableColumn<Drug, String> stockUnitPriceColumn;
     @FXML
-    private TextField stockUnitPriceTextField;
+    private TextField stockUnitSellingPriceTextField;
     private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
     private final Alert databaseAlert = new Alert(Alert.AlertType.INFORMATION);
+
     private ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
             "Paracetamol", "Diclofenac", "Ibuprofen", "Celecoxib", "Cocodamol");
 
@@ -133,6 +141,8 @@ public class PharmacyController implements Initializable {
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
+    @FXML
+    private TextField stockUnitCostPriceTextField;
 
     public ObservableList<Drug> getDrug() {
         ObservableList<Drug> drugs = FXCollections.observableArrayList();
@@ -145,6 +155,7 @@ public class PharmacyController implements Initializable {
 
             while (resultSet.next()) {
                 drugs.add( new Drug(
+                        getStockId(),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
@@ -153,7 +164,9 @@ public class PharmacyController implements Initializable {
                         resultSet.getString(7),
                         resultSet.getString(8),
                         resultSet.getString(9),
-                        resultSet.getString(10)
+                        resultSet.getString(10),
+                        resultSet.getString(11),
+                        resultSet.getString(12)
                         ));
             }
         }
@@ -229,14 +242,49 @@ public class PharmacyController implements Initializable {
             dispenseTableView.getItems().remove(selectedIndex);
         }
     }
+    public String getStockId(){
+        return String.valueOf(stockTableView.getItems().size());
+    }
 
     public void stockAddButtonClicked(ActionEvent actionEvent) {
-        Drug d = new Drug( stockDrugNameColumn.getText(), stockDoseTextField.getText(), stockFormulationCombo.getValue(),
-                stockDrugClassCombo.getValue(), stockQuantityCombo.getValue(),stockQuantityTextField.getText(), stockUnitPriceTextField.getText(),
+        Double purchaseValue = Double.parseDouble(
+                stockUnitCostPriceTextField.getText()) *
+                Double.parseDouble(stockQuantityTextField.getText());
+
+        Double salesValue = Double.parseDouble(
+                stockUnitCostPriceTextField.getText()) *
+                Double.parseDouble(stockQuantityTextField.getText());
+
+                Drug d = new Drug(
+                getStockId(),
+                stockDrugClassCombo.getValue(),
+                stockFormulationCombo.getValue(),
+                stockDrugNameCombo.getValue(),
+                stockQuantityTextField.getText(),
+                getUnitForm(),
                 stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                stockUnitCostPriceTextField.getText(),
+                stockUnitSellingPriceTextField.getText(),
+                String.valueOf(purchaseValue), String.valueOf(purchaseValue)
+                );
         stockTableView.getItems().add(d);
     }
+    private String getUnitForm() {
+        if(stockFormulationCombo.getValue().equals("Tabs"))
+                return "Tabs";
+        else if(stockFormulationCombo.getValue().equals("Caps"))
+            return "Caps";
+        else if(stockFormulationCombo.getValue().equals("Syrup"))
+            return "Syrup";
+        else if(stockFormulationCombo.getValue().equals("Susp"))
+            return "Susp";
+        else if (stockFormulationCombo.getValue().equals("IV") ||
+                stockFormulationCombo.getValue().equals("IM"))
+            return "Ampuole/Vial";
+        else return "";
+    }
+
     public void stockCheckoutButtonClicked(ActionEvent actionEvent) {
 
     }
@@ -371,7 +419,6 @@ public class PharmacyController implements Initializable {
         //Initialize all dispense and stock TableViews
         stockDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("drugName"));
         stockDrugClassColumn.setCellValueFactory(new PropertyValueFactory<>("drugClass"));
-        stockDoseColumn.setCellValueFactory(new PropertyValueFactory<>("drugDose"));
         stockQuantityFormColumn.setCellValueFactory(new PropertyValueFactory<>("quantityForm"));
         stockQuantityNumberColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         stockFormulationColumn.setCellValueFactory(new PropertyValueFactory<>("formulation"));
