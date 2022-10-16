@@ -17,6 +17,7 @@ public class Drug {
 
     private SimpleStringProperty purchaseValue;
     private SimpleStringProperty salesValue;
+    private SimpleStringProperty supplier;
 
     public Drug(
             String drugId,
@@ -30,7 +31,8 @@ public class Drug {
             String unitCostPrice,
             String unitSellingPrice,
             String purchaseValue,
-            String salesValue) {
+            String salesValue,
+            String supplier) {
         this.drugId = new SimpleStringProperty(drugId);
         this.drugClass = new SimpleStringProperty(drugClass);
         this.formulation = new SimpleStringProperty(formulation);
@@ -52,6 +54,8 @@ public class Drug {
 
         this.purchaseValue = new SimpleStringProperty(purchaseValue);
         this.salesValue = new SimpleStringProperty(salesValue);
+
+        this.supplier = new SimpleStringProperty(supplier);
     }
 
     public String getDrugId() {
@@ -196,5 +200,17 @@ public class Drug {
 
     public void setSalesValue(String salesValue) {
         this.salesValue.set(salesValue);
+    }
+
+    public String getSupplier() {
+        return supplier.get();
+    }
+
+    public SimpleStringProperty supplierProperty() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier.set(supplier);
     }
 }

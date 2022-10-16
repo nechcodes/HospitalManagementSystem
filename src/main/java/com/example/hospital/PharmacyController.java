@@ -176,7 +176,7 @@ public class PharmacyController implements Initializable {
 
             while (resultSet.next()) {
                 drugs.add( new Drug(
-                        getStockId(),
+                        resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
@@ -187,7 +187,8 @@ public class PharmacyController implements Initializable {
                         resultSet.getString(9),
                         resultSet.getString(10),
                         resultSet.getString(11),
-                        resultSet.getString(12)
+                        resultSet.getString(12),
+                        resultSet.getString(13)
                         ));
             }
         }
@@ -287,7 +288,8 @@ public class PharmacyController implements Initializable {
                 stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 stockUnitCostPriceTextField.getText(),
                 stockUnitSellingPriceTextField.getText(),
-                String.valueOf(purchaseValue), String.valueOf(purchaseValue)
+                String.valueOf(purchaseValue), String.valueOf(purchaseValue),
+                        stockSupplierTextField.getText()
                 );
         stockTableView.getItems().add(d);
     }
@@ -450,7 +452,7 @@ public class PharmacyController implements Initializable {
         stockPurchaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
         stockPurchaseValueColumn.setCellValueFactory(new PropertyValueFactory<>("purchaseValue"));
         stockSalesValueColumn.setCellValueFactory(new PropertyValueFactory<>("salesValue"));
-        //stockSupplierColumn.setCellFactory(new PropertyValueFactory<>("supplier"));
+        stockSupplierColumn.setCellValueFactory(new PropertyValueFactory<>("supplier"));
 
         stockTableView.setItems(getDrug());
         stockTableView.setEditable(false);
@@ -464,7 +466,7 @@ public class PharmacyController implements Initializable {
         stockUnitSellingPriceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         stockPurchaseDateColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         stockExpDateColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
-        //stockSupplierColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        stockSupplierColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         dispenseIdColumn.setCellValueFactory(new PropertyValueFactory<>("dispenseId"));
         dispenseDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("dName"));
