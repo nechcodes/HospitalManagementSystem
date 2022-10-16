@@ -100,7 +100,7 @@
                <Pane layoutX="358.0" layoutY="28.0">
                   <TableView fx:id="dispenseTableView" layoutX="4.0">
                      <columns>
-                        <TableColumn fx:id="dispenseId" prefWidth="47.0" text="S/N" />
+                        <TableColumn fx:id="dispenseIdColumn" prefWidth="47.0" text="S/N" />
                         <TableColumn fx:id="dispenseFormulationColumn" prefWidth="103.0" text="Formulation" />
                         <TableColumn fx:id="dispenseDrugNameColumn" prefWidth="105.0" text="Drug Name" />
                         <TableColumn fx:id="dispenseDoseColumn" prefWidth="45.0" text="Dose" />
@@ -212,8 +212,8 @@
                               </columns></TableColumn>
                            <TableColumn fx:id="stockPurchaseDateColumn" prefWidth="86.0" text="Purchase Date" />
                            <TableColumn fx:id="stockExpDateColumn" minWidth="6.0" prefWidth="65.0" text="Exp Date" />
-                           <TableColumn fx:id="stockCostPriceColumn" prefWidth="62.0" text="Cost Price" />
-                           <TableColumn fx:id="stockUnitPriceColumn" prefWidth="83.0" text="Selling Price" />
+                           <TableColumn fx:id="stockUnitCostPriceColumn" prefWidth="62.0" text="Cost Price" />
+                           <TableColumn fx:id="stockUnitSellingPriceColumn" prefWidth="83.0" text="Selling Price" />
                            <TableColumn fx:id="stockPurchaseValueColumn" minWidth="6.0" prefWidth="87.0" text="purchaseValue" />
                            <TableColumn fx:id="stockSalesValueColumn" minWidth="6.0" prefWidth="66.0" text="salesValue" />
                            <TableColumn fx:id="stockSupplierColumn" minWidth="6.0" prefWidth="113.0" text="Supplier" />

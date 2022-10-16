@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Drug {
 
-    SimpleStringProperty drugId;
+    private SimpleStringProperty drugId;
     private SimpleStringProperty drugClass;
     private SimpleStringProperty formulation;
     private SimpleStringProperty drugName;
@@ -43,11 +43,11 @@ public class Drug {
         this.unitSellingPrice = new SimpleStringProperty(unitSellingPrice);
 
         purchaseValue = String.valueOf(
-                Integer.valueOf(quantity) * Double.parseDouble(unitCostPrice)
+                Double.valueOf(quantity) * Double.parseDouble(unitCostPrice)
         );
 
         salesValue = String.valueOf(
-                Integer.valueOf(quantity) * Double.parseDouble(unitSellingPrice)
+                Double.valueOf(quantity) * Double.parseDouble(unitSellingPrice)
         );
 
         this.purchaseValue = new SimpleStringProperty(purchaseValue);
