@@ -3,21 +3,32 @@ package com.example.hospital;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Dispenser {
-    private SimpleStringProperty dFormulation, dName, dClass, dDose, dDuration, dFrequency, dQuantity, dUnitPrice;
+    private SimpleStringProperty dFormulation, dName, dDose, dDuration, dFrequency, dQuantity, dUnitPrice, sales;
     private Double dTotalBill;
 
 
 
-    public Dispenser(String dFormulation, String dName, String dClass, String dDose,
-                     String dDuration, String dFrequency, String dQuantity, String unitPrice) {
+    public Dispenser(String dFormulation,
+                     String dName,
+                     String dDose,
+                     String dFrequency,
+                     String dDuration,
+                     String dQuantity,
+                     String unitPrice,
+                     String sales) {
         this.dFormulation = new SimpleStringProperty(dFormulation);
         this.dName = new SimpleStringProperty(dName);
-        this.dClass = new SimpleStringProperty(dClass);
         this.dDose = new SimpleStringProperty(dDose);
-        this.dDuration = new SimpleStringProperty(dDuration);
         this.dFrequency = new SimpleStringProperty(dFrequency);
+        this.dDuration = new SimpleStringProperty(dDuration);
         this.dQuantity = new SimpleStringProperty(dQuantity);
         this.dUnitPrice = new SimpleStringProperty(unitPrice);
+
+        sales = String.valueOf(
+                Double.valueOf(dQuantity) * Double.parseDouble(unitPrice));
+
+        this.sales = new SimpleStringProperty(sales);
+
     }
 
     public String getdFormulation() {
@@ -42,18 +53,6 @@ public class Dispenser {
 
     public void setdName(String dName) {
         this.dName.set(dName);
-    }
-
-    public String getdClass() {
-        return dClass.get();
-    }
-
-    public SimpleStringProperty dClassProperty() {
-        return dClass;
-    }
-
-    public void setdClass(String dClass) {
-        this.dClass.set(dClass);
     }
 
     public String getdDose() {
@@ -118,6 +117,18 @@ public class Dispenser {
 
     public Double getdTotalBill() {
         return dTotalBill;
+    }
+
+    public String getSales() {
+        return sales.get();
+    }
+
+    public SimpleStringProperty salesProperty() {
+        return sales;
+    }
+
+    public void setSales(String sales) {
+        this.sales.set(sales);
     }
 
     public void setdTotalBill(Double dTotalBill) {

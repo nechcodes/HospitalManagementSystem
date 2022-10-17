@@ -100,7 +100,6 @@
                <Pane layoutX="358.0" layoutY="28.0">
                   <TableView fx:id="dispenseTableView" layoutX="4.0">
                      <columns>
-                        <TableColumn fx:id="dispenseIdColumn" prefWidth="47.0" text="S/N" />
                         <TableColumn fx:id="dispenseFormulationColumn" prefWidth="103.0" text="Formulation" />
                         <TableColumn fx:id="dispenseDrugNameColumn" prefWidth="105.0" text="Drug Name" />
                         <TableColumn fx:id="dispenseDoseColumn" prefWidth="45.0" text="Dose" />
@@ -157,7 +156,7 @@
          <Tab text="Stock">
             <AnchorPane>
                <AnchorPane layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-                  <ComboBox fx:id="stockDrugClassCombo" layoutX="174.0" layoutY="22.0" prefWidth="150.0">
+                  <ComboBox fx:id="stockDrugClassCombo" layoutX="174.0" layoutY="22.0" onAction="#stockDrugClassSelected" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -255,7 +254,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="stockFormulationCombo" layoutX="174.0" layoutY="58.0" prefWidth="150.0">
+                  <ComboBox fx:id="stockFormulationCombo" layoutX="174.0" layoutY="58.0" onAction="#stockFormulationSelected" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

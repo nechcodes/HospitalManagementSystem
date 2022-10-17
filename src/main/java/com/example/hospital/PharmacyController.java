@@ -202,8 +202,8 @@ public class PharmacyController implements Initializable {
         Dispenser d = new Dispenser(
                 dispenseFormulationCombo.getValue(),
                 dispenseDrugNameCombo.getValue(),
-                dispenseDrugClassCombo.getValue(),
                 dispenseDoseTextField.getText(),
+                dispenseFrequencyCombo.getValue(),
                 dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
                 dispenseQuantityField.getText(),
                 dispenseUnitPriceField.getText(),
@@ -215,15 +215,15 @@ public class PharmacyController implements Initializable {
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
         ObservableList<Dispenser> prescription;
         prescription = dispenseTableView.getItems();
-        double sales = 0;
+        double totalBill = 0;
 
         try {
             for (Dispenser a : prescription) {
                 double unitQuantity = Double.parseDouble(a.getdQuantity());
                 double unitPrice = Double.parseDouble(a.getdUnitPrice());
-                sales += unitPrice * unitQuantity;
+                totalBill += unitPrice * unitQuantity;
 
-                String checkoutQuery = "INSERT INTO `pharmacy`.`sales` (" +
+                String checkoutQuery = "INSERT INTO pharmacy.sales (" +
                     "`formulation`, " +
                     "`name`, " +
                     "`dose`, " +
@@ -232,28 +232,32 @@ public class PharmacyController implements Initializable {
                     "`quantity`, " +
                     "`unit_price`, " +
                     "`sales`, " +
-                    "`date`) VALUES" +
-                        a.getdFormulation() + "," +
-                        a.getdName() + "," +
-                        dispenseDoseColumn.getText() + "," +
-                        dispenseFrequencyColumn.getText() + "," +
-                        dispenseDurationColumn.getText() + "," +
-                        a.getdQuantity() + "," +
-                        a.getdUnitPrice() + "," +
-                        sales +
-                        LocalDate.now() + ")";
+                    "`date`) VALUES (\'" +
+                        a.getdFormulation() + "\', \'" +
+                        a.getdName() + "\', \'" +
+                        a.getdDose() + "\', \'" +
+                        a.getdFrequency() + "\', \'" +
+                        a.getdDuration() + "\', \'" +
+                        a.getdQuantity() + "\', \'" +
+                        a.getdUnitPrice() + "\', \'" +
+                        totalBill + "\', \'" +
+                        LocalDate.now() + "\')";
 
                 Statement statement = connectDB.prepareStatement(checkoutQuery);
                 statement.execute(checkoutQuery);
             }
             totalAlert.setTitle("Total Bill");
-            totalAlert.setHeaderText("Total bill = " + sales);
+            totalAlert.setHeaderText("Total bill = " + totalBill);
+            totalAlert.showAndWait();
+
+            totalAlert.setTitle("Success");
+            totalAlert.setHeaderText("Database Updated");
             totalAlert.showAndWait();
 
             dispenseTableView.getItems().clear();
         } catch (Exception e) {
             totalAlert.setTitle("Failed");
-            totalAlert.setHeaderText("Empty Unit price or Quantity field");
+            totalAlert.setHeaderText("Incorrect Fields. Please confirm your input and try again.");
             totalAlert.showAndWait();
         }
     }
@@ -264,11 +268,50 @@ public class PharmacyController implements Initializable {
             dispenseTableView.getItems().remove(selectedIndex);
         }
     }
-    public String getStockId(){
-        return String.valueOf(stockTableView.getItems().size());
+
+    public void stockDrugClassSelected(ActionEvent actionEvent) {
+        try {
+            Statement statement = connectDB.createStatement();
+
+            String newQuery = "SELECT form FROM pharmacy.stock WHERE class = '" +
+                    stockDrugClassCombo.getValue() + "' GROUP BY form";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+            ObservableList data = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+            stockFormulationCombo.setItems(data);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stockFormulationSelected(ActionEvent actionEvent) {
+        try {
+            Statement statement = connectDB.createStatement();
+
+            String newQuery = "SELECT name FROM pharmacy.stock WHERE class = '" +
+                    stockDrugClassCombo.getValue() + "' AND form = '" +
+                    stockFormulationCombo.getValue() + "'";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+            ObservableList data = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+            stockDrugNameCombo.setItems(data);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stockAddButtonClicked(ActionEvent actionEvent) {
+        String stockId = String.valueOf(stockTableView.getItems().size() + 1);
+
+        try{
         Double purchaseValue = Double.parseDouble(
                 stockUnitCostPriceTextField.getText()) *
                 Double.parseDouble(stockQuantityTextField.getText());
@@ -278,7 +321,7 @@ public class PharmacyController implements Initializable {
                 Double.parseDouble(stockQuantityTextField.getText());
 
                 Drug d = new Drug(
-                getStockId(),
+                stockId,
                 stockDrugClassCombo.getValue(),
                 stockFormulationCombo.getValue(),
                 stockDrugNameCombo.getValue(),
@@ -288,10 +331,18 @@ public class PharmacyController implements Initializable {
                 stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 stockUnitCostPriceTextField.getText(),
                 stockUnitSellingPriceTextField.getText(),
-                String.valueOf(purchaseValue), String.valueOf(purchaseValue),
+                String.valueOf(purchaseValue),
+                        String.valueOf(salesValue),
                         stockSupplierTextField.getText()
                 );
         stockTableView.getItems().add(d);
+        }
+        catch(Exception e){
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Wrong input. Please check your entry");
+            alert.showAndWait();
+        }
     }
     private String getUnitForm() {
         if(stockFormulationCombo.getValue().equals("Tabs"))
@@ -309,6 +360,56 @@ public class PharmacyController implements Initializable {
     }
 
     public void stockCheckoutButtonClicked(ActionEvent actionEvent) {
+        ObservableList<Drug> drug;
+        drug = stockTableView.getItems();
+
+        try {
+
+            for (Drug a : drug) {
+
+                String checkoutQuery = "INSERT INTO pharmacy.stock (" +
+                        "`class`, " +
+                        "`form`, " +
+                        "`name`, " +
+                        "`quantity`, " +
+                        "`unit_form`, " +
+                        "`purchase_date`, " +
+                        "`expiry_date`, " +
+                        "`unit_cost_price`, " +
+                        "`unit_selling_price`, " +
+                        "`purchase_value`, " +
+                        "`sales_value`, " +
+                        "`supplier_name`) VALUES (\'" +
+
+                               a.getDrugClass() + "\', \'" +
+                               a.getFormulation()+ "\', \'" +
+                               a.getDrugName() + "\', \'" +
+                               a.getQuantity() + "\', \'" +
+                               a.getUnitForm() + "\', \'" +
+                               a.getPurchaseDate() + "\', \'" +
+                               a.getExpDate() + "\', \'" +
+                               a.getUnitCostPrice() + "\', \'" +
+                               a.getUnitSellingPrice() + "\', \'" +
+                               a.getPurchaseValue() + "\', \'" +
+                               a.getSalesValue() + "\', \'" +
+                               a.getSupplier() + "\')";
+
+                Statement statement = connectDB.prepareStatement(checkoutQuery);
+                statement.execute(checkoutQuery);
+
+            }
+
+            totalAlert.setTitle("Success");
+            totalAlert.setHeaderText("Database Updated");
+            totalAlert.showAndWait();
+
+            stockTableView.setItems(getDrug());
+
+        } catch (Exception e) {
+            totalAlert.setTitle("Failed!");
+            totalAlert.setHeaderText("Please check your entry and try again");
+            totalAlert.showAndWait();
+        }
 
     }
 
@@ -414,7 +515,6 @@ public class PharmacyController implements Initializable {
                 data.add(resultSet.getString(1));
             }
             dispenseDrugNameCombo.setItems(data);
-            stockDrugNameCombo.setItems(data);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -454,7 +554,6 @@ public class PharmacyController implements Initializable {
         stockSalesValueColumn.setCellValueFactory(new PropertyValueFactory<>("salesValue"));
         stockSupplierColumn.setCellValueFactory(new PropertyValueFactory<>("supplier"));
 
-        stockTableView.setItems(getDrug());
         stockTableView.setEditable(false);
 
         stockDrugClassColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -468,7 +567,6 @@ public class PharmacyController implements Initializable {
         stockExpDateColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         stockSupplierColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        dispenseIdColumn.setCellValueFactory(new PropertyValueFactory<>("dispenseId"));
         dispenseDrugNameColumn.setCellValueFactory(new PropertyValueFactory<>("dName"));
         dispenseDoseColumn.setCellValueFactory(new PropertyValueFactory<>("dDose"));
         dispenseFormulationColumn.setCellValueFactory(new PropertyValueFactory<>("dFormulation"));
@@ -523,7 +621,7 @@ public class PharmacyController implements Initializable {
         dispenseDurationCombo2.setValue("Days");
         dispenseDurationCombo2.setItems(drugDurationList2);
 
-        stockQuantityFormCombo.setValue("1");
+        stockQuantityFormCombo.setValue("select");
         stockQuantityFormCombo.setItems(quantityList);
 
         dispenseUnitPriceField.setText("0");
