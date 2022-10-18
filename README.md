@@ -1,5 +1,3 @@
-# This project is currently undergoing maintenance and upgrades. Please check later for the complete version.
-
 # HospitalManagementSystem
 
 A simple hospital management application using javaFX.
