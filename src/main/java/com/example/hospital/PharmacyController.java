@@ -25,22 +25,7 @@ import javafx.stage.Stage;
 
 public class PharmacyController implements Initializable {
     @FXML
-    private TextField stockSupplierTextField;
-    @FXML
-    private TableColumn stockPurchaseValueColumn;
-    @FXML
-    private TableColumn stockSalesValueColumn;
-    @FXML
-    private TableColumn stockUnitCostPriceColumn;
-    @FXML
-    private ComboBox stockQuantityFormCombo;
-    @FXML
-    private Button stockCheckoutButton;
-    @FXML
-    public TextField supplierTextField;
-    @FXML
-    private TableColumn dispenseIdColumn;
-    private int dispenseSN = 1;
+    private Button showDataBase;
     @FXML
     private Button dispenseAddButton;
     @FXML
@@ -48,7 +33,9 @@ public class PharmacyController implements Initializable {
     @FXML
     private Button dispenseCheckoutButton;
     @FXML
-    private TableColumn dispenseQuantityColumn;
+    private Button stockCheckoutButton;
+    @FXML
+    public TextField supplierTextField;
     @FXML
     private Button stockAddButton;
     @FXML
@@ -56,115 +43,111 @@ public class PharmacyController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableColumn stockQuantityColumn;
-    @FXML
     private Button homeButton;
     @FXML
     private Button stockHomeButton;
     @FXML
     private Button stockLogoutButton;
     @FXML
-    private TableColumn dispenseSalesColumn;
-    @FXML
-    private TableColumn stockIdColumn;
-    @FXML
-    private TableColumn stockSupplierColumn;
-    @FXML
-    private TableColumn stockQuantityFormColumn;
-    @FXML
-    private TableColumn stockQuantityNumberColumn;
-    @FXML
     private TextField dispenseQuantityField;
-    @FXML
-    private TableColumn stockDrugClassColumn;
-    @FXML
-    private ComboBox<String> stockDrugClassCombo;
     @FXML
     private ComboBox<String> dispenseDrugClassCombo;
     @FXML
     private TextField dispenseUnitPriceField;
     @FXML
-    private TableView<Dispenser> dispenseTableView;
-    @FXML
-    private TableColumn dispenseDoseColumn;
+    private ComboBox stockQuantityFormCombo;
     @FXML
     private TextField dispenseDoseTextField;
-    @FXML
-    private TableColumn dispenseDrugNameColumn;
-    @FXML
-    private TableColumn dispenseDurationColumn;
     @FXML
     private ComboBox<Integer> dispenseDurationCombo1;
     @FXML
     private ComboBox<String> dispenseDurationCombo2;
     @FXML
-    private TableColumn dispenseFormulationColumn;
-    @FXML
     private ComboBox<String> dispenseFormulationCombo;
-    @FXML
-    private TableColumn dispenseFrequencyColumn;
     @FXML
     private ComboBox<String> dispenseFrequencyCombo;
     @FXML
-    private TableColumn dispensePriceColumn;
-    @FXML
     private ComboBox<String> dispenseDrugNameCombo;
     @FXML
-    private TableView<Drug> stockTableView;
+    private TableView<Dispenser> dispenseTableView;
     @FXML
-    private TableColumn<Drug, String> stockDoseColumn;
+    private TableColumn dispenseQuantityColumn;
     @FXML
-    private TableColumn<Drug, String> stockDrugNameColumn;
+    private TableColumn dispenseDoseColumn;
     @FXML
-    private TableColumn<Drug, Date> stockExpDateColumn;
+    private TableColumn dispenseDrugNameColumn;
+    @FXML
+    private TableColumn dispenseDurationColumn;
+    @FXML
+    private TableColumn dispenseFormulationColumn;
+    @FXML
+    private TableColumn dispenseFrequencyColumn;
+    @FXML
+    private TableColumn dispensePriceColumn;
+    @FXML
+    private TableColumn dispenseSalesColumn;
+    @FXML
+    private ComboBox<String> stockDrugClassCombo;
+    @FXML
+    private TextField stockSupplierTextField;
     @FXML
     private DatePicker stockExpDatePicker;
     @FXML
-    private TableColumn<Drug, String> stockFormulationColumn;
-    @FXML
     private ComboBox<String> stockFormulationCombo;
     @FXML
-    private ComboBox<String> stockDrugNameCombo;
-    @FXML
-    private TableColumn<Drug, Date> stockPurchaseDateColumn;
+    private TextField stockDrugNameTextField;
     @FXML
     private DatePicker stockPurchaseDatePicker;
     @FXML
     private TextField stockQuantityTextField;
     @FXML
-    private TableColumn<Drug, String> stockUnitSellingPriceColumn;
-    @FXML
     private TextField stockUnitSellingPriceTextField;
-    private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
-
-    private final Alert databaseAlert = new Alert(Alert.AlertType.INFORMATION);
-
-    private ObservableList<String> nameOfDrugList = FXCollections.observableArrayList(
-            "Paracetamol", "Diclofenac", "Ibuprofen", "Celecoxib", "Cocodamol");
-
-    private ObservableList<String> drugFormulationList = FXCollections.observableArrayList(
-            "Tabs", "Caps", "Susp", "IM", "IV", "SC", "IVF");
-
-    private ObservableList<String> drugFrequencyList = FXCollections.observableArrayList(
-            "Daily", "BD", "TDS", "QDS", "Weekly", "Others");
-
-    private ObservableList<String> drugClassList = FXCollections.observableArrayList(
-            "Analgesics", "Antihypertensives", "Anti-Diabetics", "Antiemetics",
-            "IV Fluids", "Antimalaria", "Antibiotics", "Hematinics", "Antiulcer");
-
-    private ObservableList<Integer> drugDurationList1 = FXCollections.observableArrayList(
-            1, 2, 3, 4, 5, 6);
-
-    private ObservableList<String> drugDurationList2 = FXCollections.observableArrayList(
-            "Day", "Days", "Week", "Weeks", "Months");
-    private ObservableList<String> quantityList = FXCollections.observableArrayList(
-            "Tabs", "Caps", "Susp", "Ampoule", "Vial", "IVF");
-
-    DatabaseConnection connectNow = new DatabaseConnection();
-    Connection connectDB = connectNow.getConnection();
     @FXML
     private TextField stockUnitCostPriceTextField;
-
+    @FXML
+    private TableView<Drug> stockTableView;
+    @FXML
+    private TableColumn<Drug, String> stockIdColumn;
+    @FXML
+    private TableColumn<Drug, Date> stockPurchaseDateColumn;
+    @FXML
+    private TableColumn<Drug, Date> stockExpDateColumn;
+    @FXML
+    private TableColumn<Drug, String> stockSupplierColumn;
+    @FXML
+    private TableColumn<Drug, String> stockQuantityFormColumn;
+    @FXML
+    private TableColumn<Drug, String> stockQuantityNumberColumn;
+    @FXML
+    private TableColumn<Drug, String> stockPurchaseValueColumn;
+    @FXML
+    private TableColumn<Drug, String> stockSalesValueColumn;
+    @FXML
+    private TableColumn<Drug, String> stockUnitCostPriceColumn;
+    @FXML
+    private TableColumn<Drug, String> stockDrugClassColumn;
+    @FXML
+    private TableColumn<Drug, String> stockDrugNameColumn;
+    @FXML
+    private TableColumn<Drug, String> stockFormulationColumn;
+    @FXML
+    private TableColumn<Drug, String> stockUnitSellingPriceColumn;
+    private boolean dispenseDatabaseIsShown;
+    private boolean stockDatabaseIsShown;
+    private final Alert totalAlert = new Alert(Alert.AlertType.CONFIRMATION);
+    private final Alert databaseAlert = new Alert(Alert.AlertType.WARNING);
+    private DatabaseConnection connectNow = new DatabaseConnection();
+    private Connection connectDB = connectNow.getConnection();
+    private ObservableList<String> drugFormulationList = FXCollections.observableArrayList(
+            "Tabs", "Caps", "Susp", "IM", "IV", "SC", "IVF");
+    private ObservableList<String> drugFrequencyList = FXCollections.observableArrayList(
+            "Daily", "BD", "TDS", "QDS", "Weekly", "Others");
+    private ObservableList<Integer> drugDurationList1 = FXCollections.observableArrayList(
+            1, 2, 3, 4, 5, 6);
+    private ObservableList<String> drugDurationList2 = FXCollections.observableArrayList(
+            "Day", "Days", "Week", "Weeks", "Month", "Months");
+    private ObservableList<String> quantityList = FXCollections.observableArrayList(
+            "Tabs", "Caps", "Susp", "Ampoule", "Vial", "IVF");
     public ObservableList<Drug> getDrug() {
         ObservableList<Drug> drugs = FXCollections.observableArrayList();
         try {
@@ -172,7 +155,6 @@ public class PharmacyController implements Initializable {
 
             String newQuery = "SELECT * FROM pharmacy.stock";
             ResultSet resultSet = statement.executeQuery(newQuery);
-
 
             while (resultSet.next()) {
                 drugs.add( new Drug(
@@ -197,8 +179,42 @@ public class PharmacyController implements Initializable {
         }
         return drugs;
     }
+    public ObservableList<Dispenser> getDispenser() {
+        ObservableList<Dispenser> sales = FXCollections.observableArrayList();
+        try {
+            Statement statement = connectDB.createStatement();
 
+            String newQuery = "SELECT * FROM pharmacy.sales";
+            ResultSet resultSet = statement.executeQuery(newQuery);
+
+            while (resultSet.next()) {
+                int i =1;
+                sales.add( new Dispenser(
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9)
+                        ));
+                i++;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sales;
+    }
     public void dispenseAddButtonClicked(ActionEvent actionEvent) {
+        if(dispenseDatabaseIsShown) {
+            hideDispenseDatabaseButtonClicked(actionEvent);
+        }
+        Double sales = Double.parseDouble(
+                dispenseUnitPriceField.getText()) *
+                Double.parseDouble(dispenseQuantityField.getText());
+
         Dispenser d = new Dispenser(
                 dispenseFormulationCombo.getValue(),
                 dispenseDrugNameCombo.getValue(),
@@ -207,32 +223,37 @@ public class PharmacyController implements Initializable {
                 dispenseDurationCombo1.getValue() + " " + dispenseDurationCombo2.getValue(),
                 dispenseQuantityField.getText(),
                 dispenseUnitPriceField.getText(),
-                getSales(Integer.parseInt(dispenseQuantityField.getText()),
-                        Double.parseDouble(dispenseUnitPriceField.getText()))
+                String.valueOf(sales)
         );
         dispenseTableView.getItems().add(d);
     }
     public void dispenseCheckoutButtonClicked(ActionEvent actionEvent) {
-        ObservableList<Dispenser> prescription;
-        prescription = dispenseTableView.getItems();
-        double totalBill = 0;
+        if (dispenseDatabaseIsShown) {
+            databaseAlert.setTitle("WARNING!");
+            databaseAlert.setHeaderText("Attempt to duplicate sales database FAILED!.");
+            databaseAlert.setContentText("HINT: Hide database before you add sales and checkout");
+            databaseAlert.showAndWait();
+        } else {
+            ObservableList<Dispenser> prescription;
+            prescription = dispenseTableView.getItems();
+            double totalBill = 0;
 
-        try {
-            for (Dispenser a : prescription) {
-                double unitQuantity = Double.parseDouble(a.getdQuantity());
-                double unitPrice = Double.parseDouble(a.getdUnitPrice());
-                totalBill += unitPrice * unitQuantity;
+            try {
+                for (Dispenser a : prescription) {
+                    double unitQuantity = Double.parseDouble(a.getdQuantity());
+                    double unitPrice = Double.parseDouble(a.getdUnitPrice());
+                    totalBill += unitPrice * unitQuantity;
 
-                String checkoutQuery = "INSERT INTO pharmacy.sales (" +
-                    "`formulation`, " +
-                    "`name`, " +
-                    "`dose`, " +
-                    "`frequency`, " +
-                    "`duration`, " +
-                    "`quantity`, " +
-                    "`unit_price`, " +
-                    "`sales`, " +
-                    "`date`) VALUES (\'" +
+                    String checkoutQuery = "INSERT INTO pharmacy.sales (" +
+                            "`formulation`, " +
+                            "`name`, " +
+                            "`dose`, " +
+                            "`frequency`, " +
+                            "`duration`, " +
+                            "`quantity`, " +
+                            "`unit_price`, " +
+                            "`sales`, " +
+                            "`date`) VALUES (\'" +
                         a.getdFormulation() + "\', \'" +
                         a.getdName() + "\', \'" +
                         a.getdDose() + "\', \'" +
@@ -243,32 +264,55 @@ public class PharmacyController implements Initializable {
                         totalBill + "\', \'" +
                         LocalDate.now() + "\')";
 
-                Statement statement = connectDB.prepareStatement(checkoutQuery);
-                statement.execute(checkoutQuery);
+                    Statement statement = connectDB.prepareStatement(checkoutQuery);
+                    statement.execute(checkoutQuery);
+
+                    double newQuantity = Double.parseDouble(a.getdQuantity());
+
+                    String query = "SELECT quantity FROM pharmacy.stock WHERE name = '" +
+                            a.getdName() + "'";
+
+                    ResultSet rs = statement.executeQuery(query);
+
+                    while (rs.next()) {
+                        String updateQuery = "UPDATE pharmacy.stock SET `quantity` = " +
+                                Double.parseDouble(rs.getString("quantity")) + " - " +
+                                newQuantity + " WHERE (`name` = '" + a.getdName() + "')";
+
+                        Statement statement1 = connectDB.prepareStatement(updateQuery);
+                        statement1.execute(updateQuery);
+                    }
+                }
+                totalAlert.setTitle("Total Bill");
+                totalAlert.setHeaderText("Total bill = " + totalBill);
+                totalAlert.showAndWait();
+
+                databaseAlert.setTitle("Success");
+                databaseAlert.setHeaderText("Database Updated");
+                databaseAlert.showAndWait();
+
+                dispenseTableView.getItems().clear();
+            } catch (Exception e) {
+                databaseAlert.setTitle("Failed!");
+                databaseAlert.setHeaderText("Incorrect Fields. Please confirm your input and try again.");
+                databaseAlert.showAndWait();
             }
-            totalAlert.setTitle("Total Bill");
-            totalAlert.setHeaderText("Total bill = " + totalBill);
-            totalAlert.showAndWait();
-
-            totalAlert.setTitle("Success");
-            totalAlert.setHeaderText("Database Updated");
-            totalAlert.showAndWait();
-
-            dispenseTableView.getItems().clear();
-        } catch (Exception e) {
-            totalAlert.setTitle("Failed");
-            totalAlert.setHeaderText("Incorrect Fields. Please confirm your input and try again.");
-            totalAlert.showAndWait();
         }
     }
     public void dispenseRemoveButtonClicked(ActionEvent actionEvent) {
-        int selectedIndex = dispenseTableView.getSelectionModel().getSelectedIndex();
+        if (dispenseDatabaseIsShown) {
+            databaseAlert.setTitle("WARNING!");
+            databaseAlert.setHeaderText("Cannot edit Database");
+            databaseAlert.setContentText("Database is read-only");
+            databaseAlert.showAndWait();
+        } else {
+            int selectedIndex = dispenseTableView.getSelectionModel().getSelectedIndex();
 
-        if (selectedIndex >= 0) {
-            dispenseTableView.getItems().remove(selectedIndex);
+            if (selectedIndex >= 0) {
+                dispenseTableView.getItems().remove(selectedIndex);
+            }
         }
     }
-
     public void stockDrugClassSelected(ActionEvent actionEvent) {
         try {
             Statement statement = connectDB.createStatement();
@@ -287,58 +331,37 @@ public class PharmacyController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    public void stockFormulationSelected(ActionEvent actionEvent) {
-        try {
-            Statement statement = connectDB.createStatement();
-
-            String newQuery = "SELECT name FROM pharmacy.stock WHERE class = '" +
-                    stockDrugClassCombo.getValue() + "' AND form = '" +
-                    stockFormulationCombo.getValue() + "'";
-            ResultSet resultSet = statement.executeQuery(newQuery);
-            ObservableList data = FXCollections.observableArrayList();
-
-            while (resultSet.next()) {
-                data.add(resultSet.getString(1));
-            }
-            stockDrugNameCombo.setItems(data);
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void stockAddButtonClicked(ActionEvent actionEvent) {
+        if (stockDatabaseIsShown) {
+            hideStockDatabaseButtonClicked(actionEvent);
+        }
         String stockId = String.valueOf(stockTableView.getItems().size() + 1);
 
-        try{
-        Double purchaseValue = Double.parseDouble(
-                stockUnitCostPriceTextField.getText()) *
-                Double.parseDouble(stockQuantityTextField.getText());
-
-        Double salesValue = Double.parseDouble(
-                stockUnitCostPriceTextField.getText()) *
-                Double.parseDouble(stockQuantityTextField.getText());
-
-                Drug d = new Drug(
-                stockId,
-                stockDrugClassCombo.getValue(),
-                stockFormulationCombo.getValue(),
-                stockDrugNameCombo.getValue(),
-                stockQuantityTextField.getText(),
-                getUnitForm(),
-                stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                stockUnitCostPriceTextField.getText(),
-                stockUnitSellingPriceTextField.getText(),
-                String.valueOf(purchaseValue),
-                        String.valueOf(salesValue),
-                        stockSupplierTextField.getText()
-                );
-        stockTableView.getItems().add(d);
-        }
-        catch(Exception e){
-            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+        try {
+            Double purchaseValue = Double.parseDouble(
+                    stockUnitCostPriceTextField.getText()) *
+                    Double.parseDouble(stockQuantityTextField.getText());
+            Double salesValue = Double.parseDouble(
+                    stockUnitCostPriceTextField.getText()) *
+                    Double.parseDouble(stockQuantityTextField.getText());
+            Drug d = new Drug(
+                    stockId,
+                    stockDrugClassCombo.getValue(),
+                    stockFormulationCombo.getValue(),
+                    stockDrugNameTextField.getText(),
+                    stockQuantityTextField.getText(),
+                    getUnitForm(),
+                    stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                    stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                    stockUnitCostPriceTextField.getText(),
+                    stockUnitSellingPriceTextField.getText(),
+                    String.valueOf(purchaseValue),
+                    String.valueOf(salesValue),
+                    stockSupplierTextField.getText()
+            );
+            stockTableView.getItems().add(d);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Wrong input. Please check your entry");
             alert.showAndWait();
@@ -353,96 +376,97 @@ public class PharmacyController implements Initializable {
             return "Syrup";
         else if(stockFormulationCombo.getValue().equals("Susp"))
             return "Susp";
+        else if(stockFormulationCombo.getValue().equals("NONE"))
+            return "NONE";
         else if (stockFormulationCombo.getValue().equals("IV") ||
                 stockFormulationCombo.getValue().equals("IM"))
-            return "Ampuole/Vial";
+            return "Ampoule/Vial";
         else return "";
     }
-
     public void stockCheckoutButtonClicked(ActionEvent actionEvent) {
-        ObservableList<Drug> drug;
-        drug = stockTableView.getItems();
+        if (stockDatabaseIsShown) {
+            databaseAlert.setTitle("WARNING!");
+            databaseAlert.setHeaderText("Attempt to duplicate stock database FAILED!");
+            databaseAlert.setContentText("HINT: Hide database before you add stock and checkout");
+            databaseAlert.showAndWait();
+        } else {
+            ObservableList<Drug> drug;
+            drug = stockTableView.getItems();
 
-        try {
+            try {
+                for (Drug a : drug) {
+                    String checkoutQuery = "INSERT INTO pharmacy.stock (" +
+                            "`class`, " +
+                            "`form`, " +
+                            "`name`, " +
+                            "`quantity`, " +
+                            "`unit_form`, " +
+                            "`purchase_date`, " +
+                            "`expiry_date`, " +
+                            "`unit_cost_price`, " +
+                            "`unit_selling_price`, " +
+                            "`purchase_value`, " +
+                            "`sales_value`, " +
+                            "`supplier_name`) VALUES (\'" +
+                        a.getDrugClass() + "\', \'" +
+                        a.getFormulation() + "\', \'" +
+                        a.getDrugName() + "\', \'" +
+                        a.getQuantity() + "\', \'" +
+                        a.getUnitForm() + "\', \'" +
+                        a.getPurchaseDate() + "\', \'" +
+                        a.getExpDate() + "\', \'" +
+                        a.getUnitCostPrice() + "\', \'" +
+                        a.getUnitSellingPrice() + "\', \'" +
+                        a.getPurchaseValue() + "\', \'" +
+                        a.getSalesValue() + "\', \'" +
+                        a.getSupplier() + "\')";
 
-            for (Drug a : drug) {
+                    Statement statement = connectDB.prepareStatement(checkoutQuery);
+                    statement.execute(checkoutQuery);
 
-                String checkoutQuery = "INSERT INTO pharmacy.stock (" +
-                        "`class`, " +
-                        "`form`, " +
-                        "`name`, " +
-                        "`quantity`, " +
-                        "`unit_form`, " +
-                        "`purchase_date`, " +
-                        "`expiry_date`, " +
-                        "`unit_cost_price`, " +
-                        "`unit_selling_price`, " +
-                        "`purchase_value`, " +
-                        "`sales_value`, " +
-                        "`supplier_name`) VALUES (\'" +
-
-                               a.getDrugClass() + "\', \'" +
-                               a.getFormulation()+ "\', \'" +
-                               a.getDrugName() + "\', \'" +
-                               a.getQuantity() + "\', \'" +
-                               a.getUnitForm() + "\', \'" +
-                               a.getPurchaseDate() + "\', \'" +
-                               a.getExpDate() + "\', \'" +
-                               a.getUnitCostPrice() + "\', \'" +
-                               a.getUnitSellingPrice() + "\', \'" +
-                               a.getPurchaseValue() + "\', \'" +
-                               a.getSalesValue() + "\', \'" +
-                               a.getSupplier() + "\')";
-
-                Statement statement = connectDB.prepareStatement(checkoutQuery);
-                statement.execute(checkoutQuery);
-
-            }
-
-            totalAlert.setTitle("Success");
-            totalAlert.setHeaderText("Database Updated");
-            totalAlert.showAndWait();
-
-            stockTableView.setItems(getDrug());
-
-        } catch (Exception e) {
-            totalAlert.setTitle("Failed!");
-            totalAlert.setHeaderText("Please check your entry and try again");
-            totalAlert.showAndWait();
-        }
-
-    }
-
-    public void stockRemoveButtonClicked(ActionEvent actionEvent) {
-        int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
-        Alert updateStockAlert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        try{
-            String newQuery = "DELETE FROM pharmacy.stock WHERE name = '" +
-                    stockDrugNameColumn.getText() + "'";
-            Statement statement = connectDB.prepareStatement(newQuery);
-
-                if (selectedIndex >= 0) {
-
-                    updateStockAlert.setHeaderText("Save changes?");
-                    updateStockAlert.setTitle("Database Notification");
-                    Optional<ButtonType> optional = updateStockAlert.showAndWait();
-
-                    if(optional.get() == ButtonType.OK){
-                        statement.execute(newQuery);
-                        stockTableView.getItems().remove(selectedIndex);
-                    }
                 }
-        }
-        catch(Exception e){
-            updateStockAlert.setTitle("Database Notification");
-            updateStockAlert.setHeaderText("Error while trying to modify database");
-            updateStockAlert.showAndWait();
+                databaseAlert.setTitle("Success");
+                databaseAlert.setHeaderText("Database Updated");
+                databaseAlert.showAndWait();
+
+                stockTableView.getItems().clear();
+            } catch (Exception e) {
+                databaseAlert.setTitle("Failed!");
+                databaseAlert.setHeaderText("Please check your entry and try again");
+                databaseAlert.showAndWait();
+            }
         }
     }
+    public void showStockDatabaseButtonClicked(ActionEvent event){
+        stockTableView.setItems(getDrug());
+        stockDatabaseIsShown = true;
+    }
+    public void hideStockDatabaseButtonClicked(ActionEvent event){
+        stockTableView.getItems().clear();
+        stockDatabaseIsShown = false;
+    }
+    public void hideDispenseDatabaseButtonClicked(ActionEvent actionEvent) {
+        dispenseTableView.getItems().clear();
+        dispenseDatabaseIsShown = false;
+    }
+    public void showDispenseDatabaseButtonClicked(ActionEvent actionEvent) {
+        dispenseTableView.setItems(getDispenser());
+        dispenseDatabaseIsShown = true;
+    }
+    public void stockRemoveButtonClicked(ActionEvent actionEvent) {
+        if (stockDatabaseIsShown) {
+            databaseAlert.setTitle("WARNING!");
+            databaseAlert.setHeaderText("Cannot edit Database");
+            databaseAlert.setContentText("Database is read-only");
+            databaseAlert.showAndWait();
+        } else {
+            int selectedIndex = stockTableView.getSelectionModel().getSelectedIndex();
 
-
-
+            if (selectedIndex >= 0) {
+                stockTableView.getItems().remove(selectedIndex);
+            }
+        }
+    }
     @FXML
     void homeButtonClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
@@ -520,22 +544,12 @@ public class PharmacyController implements Initializable {
             e.printStackTrace();
         }
     }
-    public String getSales(int quantity, double unitPrice){
-        double sales = quantity * unitPrice;
-
-        return String.valueOf(sales);
+    public boolean isStockDatabaseIsShown() {
+        return stockDatabaseIsShown;
     }
-
-    public int getDispenseSN() {
-        setDispenseSN(dispenseSN);
-
-        return dispenseSN;
+    public boolean isDispenseDatabaseIsShown() {
+        return dispenseDatabaseIsShown;
     }
-
-    public void setDispenseSN(int dispenseSN) {
-        this.dispenseSN = dispenseSN + 1;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -574,6 +588,7 @@ public class PharmacyController implements Initializable {
         dispensePriceColumn.setCellValueFactory(new PropertyValueFactory<>("dUnitPrice"));
         dispenseQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("dQuantity"));
         dispenseDurationColumn.setCellValueFactory(new PropertyValueFactory<>("dDuration"));
+        dispenseSalesColumn.setCellValueFactory(new PropertyValueFactory<>("sales"));
 
         dispenseTableView.setEditable(false);
 
@@ -583,9 +598,9 @@ public class PharmacyController implements Initializable {
         dispenseQuantityColumn.setCellFactory((TextFieldTableCell.forTableColumn()));
         dispensePriceColumn.setCellFactory(ComboBoxTableCell.forTableColumn());
         dispenseDurationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        dispenseSalesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // Initialize all dispense and stock Combos
-
         try {
             Statement statement = connectDB.createStatement();
 
@@ -598,8 +613,7 @@ public class PharmacyController implements Initializable {
             }
             dispenseDrugClassCombo.setItems(data);
             stockDrugClassCombo.setItems(data);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -608,12 +622,6 @@ public class PharmacyController implements Initializable {
 
         dispenseFrequencyCombo.setValue("Select");
         dispenseFrequencyCombo.setItems(drugFrequencyList);
-
-//            dispenseDrugClassCombo.setValue("Select");
-//            dispenseDrugClassCombo.setItems(drugClassList);
-//
-//            stockDrugClassCombo.setValue("Select");
-//            stockDrugClassCombo.setItems(drugClassList);
 
         dispenseDurationCombo1.setValue(3);
         dispenseDurationCombo1.setItems(drugDurationList1);
@@ -637,7 +645,5 @@ public class PharmacyController implements Initializable {
 //        drugTableView.getColumns().add(LOT);
 //
 //        drugTableView.getItems();
-//
-//
     }
 }

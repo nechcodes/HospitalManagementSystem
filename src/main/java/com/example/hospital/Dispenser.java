@@ -25,7 +25,7 @@ public class Dispenser {
         this.dUnitPrice = new SimpleStringProperty(unitPrice);
 
         sales = String.valueOf(
-                Double.valueOf(dQuantity) * Double.parseDouble(unitPrice));
+                Double.parseDouble(dQuantity) * Double.parseDouble(unitPrice));
 
         this.sales = new SimpleStringProperty(sales);
 

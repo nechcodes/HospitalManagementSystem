@@ -151,6 +151,16 @@
                      <Font name="System Bold" size="16.5" />
                   </font>
                </Button>
+               <Button fx:id="showDataBase1" layoutX="526.0" layoutY="459.0" mnemonicParsing="false" onAction="#showDispenseDatabaseButtonClicked" text="Show Database">
+                  <font>
+                     <Font name="System Bold" size="16.5" />
+                  </font>
+               </Button>
+               <Button fx:id="hideDispenseDataBase" layoutX="694.0" layoutY="459.0" mnemonicParsing="false" onAction="#hideDispenseDatabaseButtonClicked" text="Hide Database">
+                  <font>
+                     <Font name="System Bold" size="16.5" />
+                  </font>
+               </Button>
             </AnchorPane>
          </Tab>
          <Tab text="Stock">
@@ -198,7 +208,7 @@
                   </Label>
                   <TextField fx:id="stockUnitSellingPriceTextField" layoutX="176.0" layoutY="196.0" />
                   <Pane layoutX="336.0" layoutY="19.0">
-                     <TableView fx:id="stockTableView" layoutX="7.0" layoutY="4.0" prefHeight="406.0" prefWidth="893.0">
+                     <TableView fx:id="stockTableView" layoutX="7.0" layoutY="4.0" prefHeight="469.0" prefWidth="893.0">
                         <columns>
                            <TableColumn fx:id="stockIdColumn" prefWidth="31.0" text="ID" />
                            <TableColumn fx:id="stockDrugClassColumn" prefWidth="77.0" text="Drug Class" />
@@ -254,7 +264,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="stockFormulationCombo" layoutX="174.0" layoutY="58.0" onAction="#stockFormulationSelected" prefWidth="150.0">
+                  <ComboBox fx:id="stockFormulationCombo" layoutX="174.0" layoutY="58.0" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -267,21 +277,29 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="stockDrugNameCombo" layoutX="175.0" layoutY="94.0" prefWidth="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <InnerShadow />
-                     </effect>
-                  </ComboBox>
                   <Button fx:id="stockCheckoutButton" layoutX="177.0" layoutY="379.0" mnemonicParsing="false" onAction="#stockCheckoutButtonClicked" prefHeight="30.0" prefWidth="149.0" text="Checkout">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Label layoutX="23.0" layoutY="297.0" text="Supplier">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stockDrugNameTextField" layoutX="175.0" layoutY="92.0" />
+                  <TextField fx:id="stockSupplierTextField" layoutX="177.0" layoutY="298.0" />
                </AnchorPane>
-               <TextField fx:id="stockSupplierTextField" layoutX="190.0" layoutY="312.0" />
+               <Button fx:id="showDataBase" layoutX="653.0" layoutY="514.0" mnemonicParsing="false" onAction="#showStockDatabaseButtonClicked" text="Show Database">
+                  <font>
+                     <Font name="System Bold" size="16.5" />
+                  </font>
+               </Button>
+               <Button fx:id="hideDataBase" layoutX="821.0" layoutY="514.0" mnemonicParsing="false" onAction="#hideStockDatabaseButtonClicked" text="Hide Database">
+                  <font>
+                     <Font name="System Bold" size="16.5" />
+                  </font>
+               </Button>
             </AnchorPane>
          </Tab>
       </TabPane>

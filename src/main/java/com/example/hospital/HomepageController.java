@@ -56,7 +56,7 @@ public class HomepageController {
     @FXML
     void pharmacyButtonClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pharmacy.fxml")));
-        Scene scene = new Scene(root, 1200, 600);
+        Scene scene = new Scene(root, 1310, 700);
         Stage stage = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();
         stage.setTitle("Pharmacy");
