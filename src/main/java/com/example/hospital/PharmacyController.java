@@ -153,7 +153,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT * FROM pharmacy.stock";
+            String newQuery = "SELECT * FROM hospital.pharmacy_stock";
             ResultSet resultSet = statement.executeQuery(newQuery);
 
             while (resultSet.next()) {
@@ -175,7 +175,10 @@ public class PharmacyController implements Initializable {
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            databaseAlert.setTitle("ERROR");
+            databaseAlert.setHeaderText("Cannot access database");
+            databaseAlert.setContentText("Try again or Restart program.");
+            databaseAlert.showAndWait();
         }
         return drugs;
     }
@@ -184,7 +187,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT * FROM pharmacy.sales";
+            String newQuery = "SELECT * FROM hospital.pharmacy_sales";
             ResultSet resultSet = statement.executeQuery(newQuery);
 
             while (resultSet.next()) {
@@ -203,7 +206,10 @@ public class PharmacyController implements Initializable {
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            databaseAlert.setTitle("ERROR");
+            databaseAlert.setHeaderText("Cannot access database");
+            databaseAlert.setContentText("Try again or Restart program.");
+            databaseAlert.showAndWait();
         }
         return sales;
     }
@@ -244,7 +250,7 @@ public class PharmacyController implements Initializable {
                     double unitPrice = Double.parseDouble(a.getdUnitPrice());
                     totalBill += unitPrice * unitQuantity;
 
-                    String checkoutQuery = "INSERT INTO pharmacy.sales (" +
+                    String checkoutQuery = "INSERT INTO hospital.pharmacy_sales (" +
                             "`formulation`, " +
                             "`name`, " +
                             "`dose`, " +
@@ -269,13 +275,13 @@ public class PharmacyController implements Initializable {
 
                     double newQuantity = Double.parseDouble(a.getdQuantity());
 
-                    String query = "SELECT quantity FROM pharmacy.stock WHERE name = '" +
+                    String query = "SELECT quantity FROM hospital.pharmacy_stock WHERE name = '" +
                             a.getdName() + "'";
 
                     ResultSet rs = statement.executeQuery(query);
 
                     while (rs.next()) {
-                        String updateQuery = "UPDATE pharmacy.stock SET `quantity` = " +
+                        String updateQuery = "UPDATE hospital.pharmacy_stock SET `quantity` = " +
                                 Double.parseDouble(rs.getString("quantity")) + " - " +
                                 newQuantity + " WHERE (`name` = '" + a.getdName() + "')";
 
@@ -317,7 +323,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT form FROM pharmacy.stock WHERE class = '" +
+            String newQuery = "SELECT form FROM hospital.pharmacy_stock WHERE class = '" +
                     stockDrugClassCombo.getValue() + "' GROUP BY form";
             ResultSet resultSet = statement.executeQuery(newQuery);
             ObservableList data = FXCollections.observableArrayList();
@@ -351,8 +357,8 @@ public class PharmacyController implements Initializable {
                     stockDrugNameTextField.getText(),
                     stockQuantityTextField.getText(),
                     getUnitForm(),
-                    stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                    stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                    stockPurchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    stockExpDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     stockUnitCostPriceTextField.getText(),
                     stockUnitSellingPriceTextField.getText(),
                     String.valueOf(purchaseValue),
@@ -395,7 +401,7 @@ public class PharmacyController implements Initializable {
 
             try {
                 for (Drug a : drug) {
-                    String checkoutQuery = "INSERT INTO pharmacy.stock (" +
+                    String checkoutQuery = "INSERT INTO hospital.pharmacy_stock (" +
                             "`class`, " +
                             "`form`, " +
                             "`name`, " +
@@ -431,12 +437,14 @@ public class PharmacyController implements Initializable {
 
                 stockTableView.getItems().clear();
             } catch (Exception e) {
-                databaseAlert.setTitle("Failed!");
-                databaseAlert.setHeaderText("Please check your entry and try again");
-                databaseAlert.showAndWait();
+                e.printStackTrace();
+//                databaseAlert.setTitle("Failed!");
+//                databaseAlert.setHeaderText("Please check your entry and try again");
+//                databaseAlert.showAndWait();
             }
         }
     }
+    @FXML
     public void showStockDatabaseButtonClicked(ActionEvent event){
         stockTableView.setItems(getDrug());
         stockDatabaseIsShown = true;
@@ -492,7 +500,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String unitPriceQuery = "SELECT unit_selling_price FROM pharmacy.stock WHERE name = '" +
+            String unitPriceQuery = "SELECT unit_selling_price FROM hospital.pharmacy_stock WHERE name = '" +
                     dispenseDrugNameCombo.getValue() + "' AND form = '" +
                     dispenseFormulationCombo.getValue() + "'";
             ResultSet unitPriceResultSet = statement.executeQuery(unitPriceQuery);
@@ -510,7 +518,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT form FROM pharmacy.stock WHERE class = '" +
+            String newQuery = "SELECT form FROM hospital.pharmacy_stock WHERE class = '" +
                     dispenseDrugClassCombo.getValue() + "' GROUP BY form";
             ResultSet resultSet = statement.executeQuery(newQuery);
             ObservableList data = FXCollections.observableArrayList();
@@ -529,7 +537,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT name FROM pharmacy.stock WHERE class = '" +
+            String newQuery = "SELECT name FROM hospital.pharmacy_stock WHERE class = '" +
                     dispenseDrugClassCombo.getValue() + "' AND form = '" +
                     dispenseFormulationCombo.getValue() + "'";
             ResultSet resultSet = statement.executeQuery(newQuery);
@@ -543,12 +551,6 @@ public class PharmacyController implements Initializable {
         catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    public boolean isStockDatabaseIsShown() {
-        return stockDatabaseIsShown;
-    }
-    public boolean isDispenseDatabaseIsShown() {
-        return dispenseDatabaseIsShown;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -604,7 +606,7 @@ public class PharmacyController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
 
-            String newQuery = "SELECT class FROM pharmacy.stock GROUP BY class";
+            String newQuery = "SELECT class FROM hospital.pharmacy_stock GROUP BY class";
             ResultSet resultSet = statement.executeQuery(newQuery);
             ObservableList data = FXCollections.observableArrayList();
 

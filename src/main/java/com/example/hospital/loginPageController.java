@@ -29,8 +29,8 @@ public class loginPageController implements Initializable {
     private final Alert databaseAlert = new Alert(Alert.AlertType.INFORMATION);
     @FXML
     public void loginButtonClicked(ActionEvent event) throws IOException {
-        if (Objects.equals(usernameTextField.getText(), "nechcodes") &&
-                Objects.equals(passwordTextField.getText(), "1234")) {
+//        if (Objects.equals(usernameTextField.getText(), "nechcodes") &&
+//                Objects.equals(passwordTextField.getText(), "1234")) {
 
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("homepage.fxml")));
             Scene scene = new Scene(root, 800, 600);
@@ -39,13 +39,13 @@ public class loginPageController implements Initializable {
             stage.setTitle("Homepage");
             stage.setScene(scene);
             stage.show();
-        }
-        else {
-            logInAlert.setTitle("Failed");
-            logInAlert.setHeaderText("Incorrect username or password");
-            logInAlert.setContentText("Click 'sign Up'");
-            logInAlert.showAndWait();
-        }
+//        }
+//        else {
+//            logInAlert.setTitle("Failed");
+//            logInAlert.setHeaderText("Incorrect username or password");
+//            logInAlert.setContentText("Click 'sign Up'");
+//            logInAlert.showAndWait();
+//        }
     }
 
     @FXML
